@@ -21,7 +21,16 @@ app.set('layout', '../views/layout/layout')
 
 dotenv.config();
 
-
+// app.use('/',(req,res,next)=>{
+//   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+//   res.header('Expires', '-1');
+//   res.header('Pragma', 'no-cache');
+//   next();
+// })
+app.use(function (req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 
 // app.use(logger('dev'));
 app.use(express.json());

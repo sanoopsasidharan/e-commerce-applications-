@@ -5,6 +5,14 @@ const { response } = require('express');
 const  Razorpay = require('razorpay');
 const { resolve } = require('path');
 
+const dotenv=require("dotenv");
+dotenv.config();
+
+
+var instance = new Razorpay({
+    key_id: process.env.key_id,
+    key_secret: process.env.key_secret,
+  });
 
 module.exports={
     getUserOrder:(userId)=>{

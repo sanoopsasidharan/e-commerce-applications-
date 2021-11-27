@@ -171,14 +171,7 @@
                         <div class="col-md-6 ec-sort-select">
                             <span class="sort-by">Sort by</span>
                             <div class="ec-select-inner">
-                                <select name="ec-select" id="ec-select">
-                                    <option selected disabled>Position</option>
-                                    <option value="1">Relevance</option>
-                                    <option value="2">Name, A to Z</option>
-                                    <option value="3">Name, Z to A</option>
-                                    <option value="4">Price, low to high</option>
-                                    <option value="5">Price, high to low</option>
-                                </select>
+                               
                             </div>
                         </div>
                     </div>
@@ -190,7 +183,7 @@
                             <div class="row">
 
                                 <% for(var i=0; i < product.length; i++) { %>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+                                    <div id="displayProduct" class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                                         <div class="ec-product-inner">
                                             <div class="ec-pro-image-outer">
                                                <a href="/productdetails?id=<%= product[i]._id %>">
@@ -832,6 +825,14 @@
                                 <div class="ec-sb-block-content">
                                     <ul>
                                         <li>
+                                           <div style="display: flex;">
+                                            <form id="searchIteam" action="">
+                                                <input style="width: 80%; height: 30px; display: flex; " type="text" name="searchValue" id=""> 
+                                                     <button class="btn btn-info" type="submit">search</button>
+                                            </form>
+                                           </div>
+                                        </li>
+                                        <li>
                                             <div class="ec-sidebar-block-item">
                                                 <input type="checkbox" checked /> <a href="#">clothes</a><span
                                                     class="checked"></span>
@@ -1442,7 +1443,7 @@
         <a href="#" class="ec-tools-sidebar-toggle in-out">
             <img alt="icon" src="assets/images/common/settings.png" />
         </a>
-        <div class="ec-tools-detail">
+        <div id="sanu" class="ec-tools-detail">
             <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
                 <h3>Color Scheme</h3>
                 <ul class="bg-panel">
@@ -1564,6 +1565,19 @@
 //   showConfirmButton: false,
 //   timer: 1500
 // })
+
+
+
+
+ $('#searchIteam').submit((num)=>{
+     num.preventDefault()
+     $.ajax({
+         url:'/productSearch',
+         data:$('#searchIteam').serialize(),
+         method:'post',
+         
+     })
+ })
     </script>
 
 </body>

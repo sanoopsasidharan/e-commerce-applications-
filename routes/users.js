@@ -6,11 +6,17 @@ var router = express.Router();
 const userHelpers = require('../helpers/user-helpers')
 const cartHelpers = require('../helpers/cart-helpers')
 const orderHelpers = require('../helpers/order-helper')
+
+const dotenv=require("dotenv");
+dotenv.config();
+
 var logo = false
 var blocked = false
-  
+  const serviceID=process.env.serviceID
+   const accountSID =process.env.accountSID
+   const authToken =process.env.authToken
 const client = require('twilio')(accountSID,authToken)
- 
+
 const verifyLogin=(req,res,next)=>{
   if(req.session.loggedIn){
     next()
@@ -146,6 +152,13 @@ router.get('/product',async(req,res)=>{
   })
 })
 
+// search products
+router.post('/productSearch',(req,res)=>{
+  console.log(req.body.searchValue);
+  productHelpers.searchProduct(req.body.searchValue).then((products)=>{
+    res.json(products)
+  })
+})
 
 
 // show product divied by category

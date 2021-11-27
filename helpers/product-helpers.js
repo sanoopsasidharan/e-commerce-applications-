@@ -129,6 +129,16 @@ productObj={
                
             
         })
+    },
+    searchProduct:(productName)=>{
+        return new Promise(async(resolve,reject)=>{
+           var products= await db.get().collection(collection.productCollection).find({productname:{$regex:productName}}).toArray()
+            if (products){
+                resolve({status:true,products})
+            }else{
+                resolve(null)
+            }
+        })
     }
 
 }
