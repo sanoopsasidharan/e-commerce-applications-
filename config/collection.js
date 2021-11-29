@@ -5,5 +5,6 @@ module.exports={
     cartCollection:'cart',
     productCollection:'product',
     orderCollection:'order',
-    addressCollection:'address'
+    addressCollection:'address',
+    wishlistCollection:'wishlist'
 }

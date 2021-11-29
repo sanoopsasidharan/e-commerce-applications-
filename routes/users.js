@@ -433,7 +433,7 @@ router.get('/checkout',verifyLogin,async(req,res)=>{
 
    let total = await cartHelpers.getTotalAmount(req.session.user._id)
   //  console.log(total);
-   let addresss=await userHelpers.showAllAddress()
+   let addresss=await userHelpers.showAllAddress(req.session.user._id)
 
    res.render('user/checkout',{admin:0,user,result,cartCount,addresss,total})
 
@@ -453,9 +453,9 @@ router.get('/checkout',verifyLogin,async(req,res)=>{
 // })
 
 
-router.post('/addAddressCheckout',(req,res)=>{
+router.post('/addAddressCheckout',verifyLogin,(req,res)=>{
   console.log(req.body);
-   userHelpers.addNewAddress(req.body).then((response)=>{
+   userHelpers.addNewAddress(req.body,req.session.user._id).then((response)=>{
          res.json({status:true})
    })
   // let products= await cartHelpers.getCartProductList(req.body.userId)
@@ -467,15 +467,12 @@ router.post('/addAddressCheckout',(req,res)=>{
 })
 
 router.post('/placeOrders',async(req,res)=>{
-  console.log('hwllooo');
   var obj = req.body
-   console.log(obj.adderssId);
-   console.log(req.body.adderssId);
     let products= await cartHelpers.getCartProductList(req.body.userId)
   let totalPrice= await cartHelpers.getTotalAmount(req.body.userId)
-  let address = await userHelpers.getOneAddress(req.body.adderssId)
-  console.log(products,totalPrice,address);
+  let address = await userHelpers.getOneAddress(req.body.adderssId,req.session.user._id)
    await cartHelpers.placeOrder(req.body,products,totalPrice,address).then((orderId)=>{
+     console.log(req.body['paymentmethod']==='COD');
      if(req.body['paymentmethod']==="COD"){
       res.json({CODsuccess:true})
      }else{
@@ -505,17 +502,26 @@ router.post('/verifyPayment',(req,res)=>{
 
 
 // buy now in user side
-router.get('/buyNowCheckOut',(req,res)=>{
-  console.log('called buy now checkout');
-  console.log(req.query.id);
-  productHelpers.findProduct(req.query.id).then((response)=>{
-    res.render('user/buyNowCheckout',{admin:9,response})
+router.get('/buyNowCheckOut',verifyLogin,async(req,res)=>{
+  let user = req.session.user
+
+  var result;
+   categoryHelpers.showAllCategorysubcate().then((results)=>{
+     result = results
+   })
+   let cartCount=await cartHelpers.getCartCount(req.session.user._id)
+
+  let addresss=await userHelpers.showAllAddress(req.session.user._id)
+  await productHelpers.findProduct(req.query.id).then((response)=>{
+    res.render('user/buyNowCheckout',{admin:0,result,cartCount,user,response,addresss})
   })
 })
 
 // buy now checkout page post method
 router.post('/buyNowCheckOut',(req,res)=>{
-  console.log('called buy now checkout');
+
+  console.log(req.body);
+  console.log('called buy now checkoutssssssssssssssssss');
   
 })
 
@@ -569,6 +575,36 @@ router.post('/canselOrder',async(req,res)=>{
    res.json(response)
  })
 
+})
+
+// wishlist in user 
+router.get('/wishlist',verifyLogin,async(req,res)=>{
+  let user = req.session.user
+  console.log(req.session.user);
+  var result;
+  await categoryHelpers.showAllCategorysubcate().then((results)=>{
+     result = results
+   })
+   let cartCount=await cartHelpers.getCartCount(req.session.user._id)
+   let wishListItems= await userHelpers.showAllWishlists(req.session.user._id)
+
+ res.render('user/wishlist',{admin:0,user,result,cartCount,wishListItems})
+})
+
+// add to wishlist
+router.post('/wishlist',(req,res)=>{
+  userHelpers.addToWishlist(req.body.proId,req.session.user._id).then((response)=>{
+    res.json(response)
+  })
+})
+
+// remove form wishlist
+router.post('/removeProductInWishlist',(req,res)=>{
+  console.log(req.body);
+  userHelpers.removeWishlistProduct(req.body.proId,req.session.user._id).then((response)=>{
+    console.log(response);
+    res.json(response)
+  })
 })
 
 

@@ -5,21 +5,23 @@
     Copyright 2021-2022
 	Author URI: https://themeforest.net/user/ashishmaraviya
  ============================================================-->
- <!DOCTYPE html>
- <html lang="en">
- 
- 
-<!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Nov 2021 19:16:41 GMT -->
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Nov 2021 19:16:49 GMT -->
+
 <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-     
-     <title>Ekka - Ecommerce HTML Template.</title>
-     <meta name="keywords" content="apparel, catalog, clean, ecommerce, ecommerce HTML, electronics, fashion, html eCommerce, html store, minimal, multipurpose, multipurpose ecommerce, online store, responsive ecommerce template, shops" />
-     <meta name="description" content="Best ecommerce html template for single and multi vendor store.">
-     <meta name="author" content="ashishmaraviya">
-     
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <title>Ekka - Ecommerce HTML Template.</title>
+    <meta name="keywords"
+        content="apparel, catalog, clean, ecommerce, ecommerce HTML, electronics, fashion, html eCommerce, html store, minimal, multipurpose, multipurpose ecommerce, online store, responsive ecommerce template, shops" />
+    <meta name="description" content="Best ecommerce html template for single and multi vendor store.">
+    <meta name="author" content="ashishmaraviya">
+
     <!-- site Favicon -->
     <link rel="icon" href="assets/images/favicon/favicon.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="assets/images/favicon/favicon.png" />
@@ -43,17 +45,14 @@
 
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
-    <style>
-        ::-webkit-scrollbar {
-            display: none;
-        }
-    </style>
-    
+
 </head>
-<body class="checkout_page">
+
+<body class="compare_page">
     <div id="ec-overlay"><span class="loader_img"></span></div>
 
     <!-- Header start  -->
+
     <!-- Header End  -->
 
     <!-- ekka Cart Start -->
@@ -133,306 +132,278 @@
     <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->
-    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+
+    <!-- <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">Checkout</h2>
+                            <h2 class="ec-breadcrumb-title">Wishlist</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <!-- ec-breadcrumb-list start -->
+                           
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="ec-breadcrumb-item active">Checkout</li>
+                                <li class="ec-breadcrumb-item active">Wishlist</li>
                             </ul>
-                            <!-- ec-breadcrumb-list end -->
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
     <!-- Ec breadcrumb end -->
 
-    <!-- Ec checkout page -->
+    <!-- Ec Wishlist page -->
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">
-                <div class="ec-checkout-leftside col-lg-12 col-md-12 ">
-                    <!-- checkout content Start -->
-                    <div class="ec-checkout-content">
-                        <div class="ec-checkout-inner">
-                            <div class="ec-checkout-wrap margin-bottom-30">
-                                <div class="ec-checkout-block ec-check-new">
-                                    <h3 class="ec-checkout-title">New Customer</h3>
+                <!-- Compare Content Start -->
+                <div class="ec-wish-rightside col-lg-12 col-md-12">
+                    <!-- Compare content Start -->
+                    <div id="allWishlist" class="ec-compare-content">
+                        <div class="ec-compare-inner">
+                            <div class="row margin-minus-b-30">
 
-                                    <div class="ec-check-block-content">
-                                        <form id="address-form">
-                                            
-                                            <div id="allAddress" style=" overflow: scroll; height: 250px; width: 100%;"
-                                                class="ec-vendor-card-body">
-                                                <div class="ec-vendor-card-table">
-                                                    <table style="border: 1px solid black; border-radius: 20px;"
-                                                        class="table ec-table">
+                                <% for(var i=0; i< wishListItems.length; i++) {%>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                            src="/productimage/image1/<%= wishListItems[i].product[0]._id%>_1.jpg"
+                                                            alt="Product" />
+                                                        <img class="hover-image"
+                                                            src="/productimage/image1/<%= wishListItems[i].product[0]._id%>_2.jpg"
+                                                            alt="Product" />
+                                                    </a>
+                                                    <button
+                                                        onclick="removeProduct('<%= wishListItems[i].product[0]._id%>')">
+                                                        <span class="ec-com-remove "><a>×</a></span></button>
+
+                                                    <a href="/productdetails?id=<%= wishListItems[i].product[0]._id%>" class="quickview"><img
+                                                            src="assets/images/icons/quickview.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+
+                                                    <div class="ec-pro-actions">
+                                                        <a href="" class="ec-btn-group compare"
+                                                            title="Compare"><img src="assets/images/icons/cart.svg"
+                                                                class="svg_img pro_svg" alt="" /></a>
                                                         
-                                                        <tbody>
-                                                            <% for(var j=0; j<addresss.length; j++) {%>
-                                                                <tr>
-                                                                    <td><span> <input style="width: 17px!important;"
-                                                                                name="adderssId"
-                                                                                value="<%= addresss[j].address.addresId%>"
-                                                                                type="radio" checked></span></td>
-                                                                    <td><span>
-                                                                            <%= addresss[j].address.name%>
-                                                                            <%= addresss[j].address.addresId%>
-                                                                        </span></td>
-                                                                    <td><span>
-                                                                            <%= addresss[j].address.number%>
-                                                                        </span></td>
-                                                                    <td><span>
-                                                                            <%= addresss[j].address.address%>
-                                                                        </span></td>
-                                                                    <td><span>
-                                                                            <%= addresss[j].address.state%>
-                                                                        </span></td>
-                                                                </tr>
-                                                                <%}%>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
 
-
-
-                                            <div>
-                                                <h3 class="mt-5">Payment method</h3>
-
-                                                <input style="width: 17px!important;" name="paymentmethod" value="COD"
-                                                    type="radio" checked>
-                                                <label for="">COD</label>
-                                                <input style="width: 17px!important;" name="paymentmethod"
-                                                    value="ONLINE" type="radio">
-                                                <label for="">ONLINE</label>
-                                            </div>
-                                            <input type="text" name="userId" value="" id="" hidden>
-
-
-                                            <br>
-                                            <div class="ec-sidebar-block">
-                                                <div class="ec-sb-title">
-                                                    <h3 class="ec-sidebar-title">Summary</h3>
-                                                </div>
-
-                                                <div class="ec-sb-block-content">
-                                                    <div class="ec-checkout-summary">
-                                                        <br>
-                                                        <br>
-                                                  
-                                                        <div>
-                                                            <span class="text-left"> <h6>Product name </h6></span>
-                                                            <span class="text-right"><h5 class="new-price"><%= response[0].productname%></h5></span>
-                                                        </div>
-                                                       
-                                                        <div>
-                                                            <span class="text-left"> <h6>Category name </h6></span>
-                                                            <span class="text-right"><h5 class="new-price"><%= response[0].category%></h5></span>
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-left"> <h6>Subcategory name </h6></span>
-                                                            <span class="text-right"><h5 class="new-price"><%= response[0].subcategory%></h5></span>
-                                                        </div>
-                                                        <br>
-                                                      
-
-                                                        <div>
-                                                            <span class="text-left">Sub-total</span>
-                                                            <span class="text-right">₹ <%= response[0].price%></span>
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-left">Delivery Charges</span>
-                                                            <span class="text-right">₹00.00</span>
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-left">Coupan Discount</span>
-                                                            <span class="text-right"><a class="ec-checkout-coupan">Apply Coupan</a></span>
-                                                        </div>
-                                                        <div class="ec-checkout-coupan-content">
-                                                            <form class="ec-checkout-coupan-form" name="ec-checkout-coupan-form"
-                                                                method="post" action="#">
-                                                                <input class="ec-coupan" type="text" required=""
-                                                                    placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
-                                                                <button class="ec-coupan-btn button btn-primary" type="submit"
-                                                                    name="subscribe" value="">Apply</button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="ec-checkout-summary-total">
-                                                            <span class="text-left"><h5>Total Amount</h5></span>
-                                                            <span class="text-right">₹ <%= response[0].price%></span>
-                                                        </div>
+                                                        <!-- <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                                src="assets/images/icons/cart.svg"
+                                                                class="svg_img pro_svg" alt="" /></a> -->
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
+                                            <div class="ec-pro-content">
+                                                <h5 class="ec-pro-title"><a style="text-align: center;" href="/productdetails?id=<%= wishListItems[i].product[0]._id%>">
+                                                        <%= wishListItems[i].product[0].productname%>
+                                                    </a></h5>
 
-                                            <div class="mt-4" style="display: flex; justify-content: end;">
-                                                <button class="btn btn btn-primary Flat-right"
-                                                    type="submit">Checkout</button>
+
+                                                <span  style="display: flex;justify-content: space-around;" class="ec-price">
+                                                    <!-- <span class="old-price">$</span> -->
+
+                                                    <span class="new-price">₹<%= wishListItems[i].product[0].price%>
+                                                            </span>
+                                                </span>
+                                                <!-- <div class="ec-pro-option">
+                                                <div class="ec-pro-color">
+                                                    <span class="ec-pro-opt-label">Color</span>
+                                                    <ul class="ec-opt-swatch ec-change-img">
+                                                        <li class="active"><a href="#" class="ec-opt-clr-img"
+                                                                data-src="assets/images/product-image/7_1.jpg"
+                                                                data-src-hover="assets/images/product-image/7_1.jpg"
+                                                                data-tooltip="Gray"><span
+                                                                    style="background-color:#01f1f1;"></span></a></li>
+                                                        <li><a href="#" class="ec-opt-clr-img"
+                                                                data-src="assets/images/product-image/7_2.jpg"
+                                                                data-src-hover="assets/images/product-image/7_2.jpg"
+                                                                data-tooltip="Orange"><span
+                                                                    style="background-color:#b89df8;"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ec-pro-size">
+                                                    <span class="ec-pro-opt-label">Size</span>
+                                                    <ul class="ec-opt-size">
+                                                        <li class="active"><a href="#" class="ec-opt-sz"
+                                                                data-old="$12.00" data-new="$10.00"
+                                                                data-tooltip="Small">S</a></li>
+                                                        <li><a href="#" class="ec-opt-sz" data-old="$15.00"
+                                                                data-new="$12.00" data-tooltip="Medium">M</a></li>
+                                                        <li><a href="#" class="ec-opt-sz" data-old="$20.00"
+                                                                data-new="$17.00" data-tooltip="Extra Large">XL</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div> -->
                                             </div>
-                                        </form>
-
-                                       
-
+                                        </div>
                                     </div>
-                                  
+                                    <% } %>
+                                    
+                            <% if(wishListItems.length==0){ %>
+                                 <div class="col-12">
+                                    <div class="ec-product-inner">
+                                        <div class="ec-pro-image-outer">
+                                            <h1 style="color: red; display: flex; justify-content: center;" > Products is empty</h1>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- <div class="ec-checkout-block ec-check-login">
-                                    <h3 class="ec-checkout-title">Returning Customer</h3>
-                                    <div class="ec-check-login-form">
-                                        <form action="#" method="post">
-                                            <span class="ec-check-login-wrap">
-                                                <label>Email Address</label>
-                                                <input type="text" name="name" placeholder="Enter your email address"
-                                                    required />
-                                            </span>
-                                            <span class="ec-check-login-wrap">
-                                                <label>Password</label>
-                                                <input type="password" name="password" placeholder="Enter your password"
-                                                    required />
-                                            </span>
+                                <% } %>
 
-                                            <span class="ec-check-login-wrap ec-check-login-btn">
-                                                <button class="btn btn-primary" type="submit">Login</button>
-                                                <a class="ec-check-login-fp" href="#">Forgot Password?</a>
-                                            </span>
-                                        </form>
+
+                                        <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+                                    <div class="ec-product-inner">
+                                        <div class="ec-pro-image-outer">
+                                            <div class="ec-pro-image">
+                                                <a href="product-left-sidebar.html" class="image">
+                                                    <img class="main-image"
+                                                        src="assets/images/product-image/2_1.jpg" alt="Product" />
+                                                    <img class="hover-image"
+                                                        src="assets/images/product-image/2_2.jpg" alt="Product" />
+                                                </a>
+                                                <span class="ec-com-remove ec-remove-wish"><a href="javascript:void(0)">×</a></span>
+                                                <span class="percentage">20%</span>
+                                                <a href="#" class="quickview" data-link-action="quickview"
+                                                    title="Quick view" data-bs-toggle="modal"
+                                                    data-bs-target="#ec_quickview_modal"><img
+                                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                                        alt="" /></a>
+                                                <div class="ec-pro-actions">
+                                                    <a href="compare.html" class="ec-btn-group compare"
+                                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                    <button title="Add To Cart" class=" add-to-cart"><img
+                                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                            alt="" /> Add To Cart</button>
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                            src="assets/images/icons/wishlist.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ec-pro-content">
+                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Jumbo Carry Bag</a></h5>
+                                            <div class="ec-pro-rating">
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star"></i>
+                                            </div>
+                                            <div class="ec-pro-list-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dutmmy text ever since the 1500s, when an unknown printer took a galley.</div>
+                                            <span class="ec-price">
+                                                <span class="old-price">$50.00</span>
+                                                <span class="new-price">$40.00</span>
+                                            </span>                                                
+                                            <div class="ec-pro-option">
+                                                <div class="ec-pro-color">
+                                                    <span class="ec-pro-opt-label">Color</span>
+                                                    <ul class="ec-opt-swatch ec-change-img">
+                                                        <li class="active"><a href="#" class="ec-opt-clr-img"
+                                                                data-src="assets/images/product-image/2_1.jpg"
+                                                                data-src-hover="assets/images/product-image/2_2.jpg"
+                                                                data-tooltip="Gray"><span
+                                                                    style="background-color:#fdbf04;"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div> -->
 
-                            </div>
-                            <div class="ec-checkout-wrap margin-bottom-30 padding-bottom-3">
-                                <div class="ec-checkout-block ec-check-bill">
-                                    <h3 class="ec-checkout-title">Billing Details</h3>
-                                    <div class="ec-bl-block-content">
-                                        <!-- <div class="ec-check-subtitle">Checkout Options</div> -->
-                                        <!-- <span class="ec-bill-option">
-                                            <span>
-                                                <input type="radio" id="bill1" name="radio-group">
-                                                <label for="bill1">I want to use an existing address</label>
-                                            </span>
-                                            <span>
-                                                <input type="radio" id="bill2" name="radio-group" checked>
-                                                <label for="bill2">I want to use new address</label>
-                                            </span>
-                                        </span> -->
-                                        <div id="add-address-form" class="ec-check-bill-form">
-                                            <form action="" id="checkout-form">
-                                                <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>First Name*</label>
-                                                    <input id="fname" type="text" name="name"
-                                                        placeholder="Enter your Name">
-                                                    <div class="invalid-feedback text-danger mb-3" id="name-Text">enter
-                                                        your Name</div>
-                                                </span>
 
-                                                <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>Number*</label>
-                                                    <input id="numberValidation" type="text" name="number"
-                                                        placeholder="Enter your Number" maxlength="10" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="text-Number">
-                                                        Enter your phone number </div>
-                                                </span>
-                                                <span class="ec-bill-wrap">
-                                                    <label>Address</label>
-                                                    <input type="text" id="address" name="address"
-                                                        placeholder="Address Line 1" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="address-Text">
-                                                        enter your Name</div>
-                                                </span>
-                                                <span class="ec-bill-wrap">
-                                                    <label>Location</label>
-                                                    <input id="location" type="text" name="location"
-                                                        placeholder=" current location" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="location-Text">
-                                                        enter your location</div>
-                                                </span>
-                                                <span class="ec-bill-wrap">
-                                                    <label>City</label>
-                                                    <input id="city" type="text" name="City"
-                                                        placeholder=" current city" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="city-Text">enter
-                                                        your city</div>
-                                                </span>
-                                                <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>Post Code</label>
-                                                    <input type="text" id="pinValidation" name="pincode"
-                                                        placeholder="Pin code" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="text-pin">Enter
-                                                        your pin </div>
-                                                </span>
-                                                <span class="ec-bill-wrap">
-                                                    <label>state</label>
-                                                    <input id="state" type="text" name="state" placeholder="state" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="state-Text">Enter
-                                                        your state </div>
-                                                </span>
-
-                                                <!-- <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>Country *</label>
-                                                    <span class="ec-bl-select-inner">
-                                                        <select name="ec_select_country" id="ec-select-country"
-                                                            class="ec-bill-select">
-                                                            <option selected disabled>Country</option>
-                                                            <option value="1">Country 1</option>
-                                                            <option value="2">Country 2</option>
-                                                            <option value="3">Country 3</option>
-                                                            <option value="4">Country 4</option>
-                                                            <option value="5">Country 5</option>
-                                                        </select>
-                                                    </span>
-                                                </span> -->
-
-                                               
-
-                                                <!-- <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>Payment method</label>
-                                                    <span class="ec-bl-select-inner">
-                                                        <select name="paymentmethod" id="ec-select-state"
-                                                            class="ec-bill-select">
-                                                            <option selected disabled></option>
-                                                            <option value="COD">COD</option>
-                                                            <option value="ONLINE">ONLINE</option>
-                                                           
-                                                        </select>
-                                                    </span>
-                                                </span> -->
-                                                <button class="btn btn btn-primary Flat-right"
-                                                    type="submit">Submit</button>
-
-                                            </form>
+                                        <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+                                    <div class="ec-product-inner">
+                                        <div class="ec-pro-image-outer">
+                                            <div class="ec-pro-image">
+                                                <a href="product-left-sidebar.html" class="image">
+                                                    <img class="main-image"
+                                                        src="assets/images/product-image/8_1.jpg" alt="Product" />
+                                                    <img class="hover-image"
+                                                        src="assets/images/product-image/8_2.jpg" alt="Product" />
+                                                </a>
+                                                <span class="ec-com-remove ec-remove-wish"><a href="javascript:void(0)">×</a></span>
+                                                <span class="percentage">20%</span>
+                                                <a href="#" class="quickview" data-link-action="quickview"
+                                                    title="Quick view" data-bs-toggle="modal"
+                                                    data-bs-target="#ec_quickview_modal"><img
+                                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                                        alt="" /></a>
+                                                <div class="ec-pro-actions">
+                                                    <a href="compare.html" class="ec-btn-group compare"
+                                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                    <button title="Add To Cart" class=" add-to-cart"><img
+                                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                            alt="" /> Add To Cart</button>
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                            src="assets/images/icons/wishlist.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                </div>
+                                            </div>
                                         </div>
-
+                                        <div class="ec-pro-content">
+                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">I smart watch 6gb</a></h5>
+                                            <div class="ec-pro-rating">
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star"></i>
+                                            </div>
+                                            <div class="ec-pro-list-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dutmmy text ever since the 1500s, when an unknown printer took a galley.</div>
+                                            <span class="ec-price">
+                                                <span class="old-price">$12.00</span>
+                                                <span class="new-price">$10.00</span>
+                                            </span>
+                                            <div class="ec-pro-option">
+                                                <div class="ec-pro-color">
+                                                    <span class="ec-pro-opt-label">Color</span>
+                                                    <ul class="ec-opt-swatch ec-change-img">
+                                                        <li class="active"><a href="#" class="ec-opt-clr-img"
+                                                                data-src="assets/images/product-image/8_1.jpg"
+                                                                data-src-hover="assets/images/product-image/8_1.jpg"
+                                                                data-tooltip="Gray"><span
+                                                                    style="background-color:#e2e2e2;"></span></a></li>
+                                                        <li><a href="#" class="ec-opt-clr-img"
+                                                                data-src="assets/images/product-image/8_3.jpg"
+                                                                data-src-hover="assets/images/product-image/8_3.jpg"
+                                                                data-tooltip="Orange"><span
+                                                                    style="background-color:#ffcef7;"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ec-pro-size">
+                                                    <span class="ec-pro-opt-label">Size</span>
+                                                    <ul class="ec-opt-size">
+                                                        <li class="active"><a href="#" class="ec-opt-sz"
+                                                                data-old="$12.00" data-new="$10.00"
+                                                                data-tooltip="Small">S</a></li>
+                                                        <li><a href="#" class="ec-opt-sz" data-old="$15.00"
+                                                                data-new="$12.00" data-tooltip="Medium">M</a></li>
+                                                        <li><a href="#" class="ec-opt-sz" data-old="$20.00"
+                                                                data-new="$17.00" data-tooltip="Extra Large">XL</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-
+                                </div> -->
                             </div>
-                            <span class="ec-check-order-btn">
-                                <a class="btn btn-primary" href="#">Place Order</a>
-                            </span>
                         </div>
                     </div>
-                    <!--cart content End -->
+                    <!--compare content End -->
                 </div>
-                <!-- Sidebar Area Start -->
-                
+                <!-- Compare Content end -->
             </div>
         </div>
     </section>
-
-    <!-- New Product Start -->
-    
-    <!-- New Product end -->
 
     <!-- Footer Start -->
     <footer class="ec-footer section-space-mt">
@@ -461,7 +432,11 @@
                                         <li class="ec-footer-link">71 Pilgrim Avenue Chevy Chase, east california.</li>
                                         <li class="ec-footer-link"><span>Call Us:</span><a href="tel:+440123456789">+44
                                                 0123 456 789</a></li>
-                                        <li class="ec-footer-link"><span>Email:</span><a href="https://loopinfosol.in/cdn-cgi/l/email-protection#acc9d4cdc1dcc0c9ecc9cf81c9c1cdc5c082cfc3c1"><span class="__cf_email__" data-cfemail="82a9e7fae3eff2eee7c2e7e1afe7efe3ebeeace1edef">[email&#160;protected]</span></a></li>
+                                        <li class="ec-footer-link"><span>Email:</span><a
+                                                href="https://loopinfosol.in/cdn-cgi/l/email-protection#dfbaa7beb2afb3ba9fbabcf2bab2beb6b3f1bcb0b2"><span
+                                                    class="__cf_email__"
+                                                    data-cfemail="1b307e637a766b777e5b7e78367e767a727735787476">[email&#160;protected]</span></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -540,10 +515,14 @@
                             <div class="footer-bottom-social">
                                 <span class="social-text text-upper">Follow us on:</span>
                                 <ul class="mb-0">
-                                    <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
+                                    <li class="list-inline-item"><a class="hdr-facebook" href="#"><i
+                                                class="ecicon eci-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a class="hdr-twitter" href="#"><i
+                                                class="ecicon eci-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a class="hdr-instagram" href="#"><i
+                                                class="ecicon eci-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i
+                                                class="ecicon eci-linkedin"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -619,7 +598,8 @@
                         </div>
                         <div class="col-md-7 col-sm-12 col-xs-12">
                             <div class="quickview-pro-content">
-                                <h5 class="ec-quick-title"><a href="product-left-sidebar.html">Handbag leather purse for women</a>
+                                <h5 class="ec-quick-title"><a href="product-left-sidebar.html">Handbag leather purse for
+                                        women</a>
                                 </h5>
                                 <div class="ec-quickview-rating">
                                     <i class="ecicon eci-star fill"></i>
@@ -712,8 +692,7 @@
     <!-- Footer navigation panel for responsive display end -->
 
     <!-- Recent Purchase Popup  -->
-
-    <!-- <div class="recent-purchase">
+    <div class="recent-purchase">
         <img src="assets/images/product-image/1.jpg" alt="payment image">
         <div class="detail">
             <p>Someone in new just bought</p>
@@ -721,11 +700,6 @@
             <p>10 Minutes ago</p>
         </div>
         <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
-    </div> -->
-    <div style="display: flex; justify-content: center; " class="recent-purchase">
-        <div style="justify-content: center;" class="detail">
-            <h6>Enjoy your Shopping</h6>
-        </div>
     </div>
     <!-- Recent Purchase Popup end -->
 
@@ -930,7 +904,9 @@
     <!-- Feature tools end -->
 
     <!-- Vendor JS -->
-    <script data-cfasync="false" src="https://loopinfosol.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script data-cfasync="false"
+        src="https://loopinfosol.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
     <script src="assets/js/vendor/popper.min.js"></script>
     <script src="assets/js/vendor/bootstrap.min.js"></script>
     <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
@@ -945,322 +921,49 @@
     <script src="assets/js/plugins/infiniteslidev2.js"></script>
     <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
     <script src="assets/js/plugins/jquery.sticky-sidebar.js"></script>
-    
+
     <!-- Main Js -->
     <script src="assets/js/vendor/index.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <script>
-        
-
-var nameValidated = false;
-        var phoneValidated = false;
-        var addressValidated = false;
-        var locationValidated = false;
-        var pinValidated = false;
-        var cityValidated = false;
-        var stateValidated = false;
-
-
-        $("#fname").keyup(function () {
-            if ($("#fname").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#name-Text").show();
-                $("#name-Text").text(" ");
-                nameValidated = true;
-            } else {
-                $("#name-Text").show();
-                $("#name-Text").text("Invalid name! try again");
-                $("#name-Text").css("class", "invalid-feedback");
-                nameValidated = false;
-            }
-            $("#fname").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
+        function removeProduct(proId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't to delete this product!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your product has been deleted.',
+                        'success'
+                    )
+                    $.ajax({
+                        url: '/removeProductInWishlist',
+                        data: {
+                            proId: proId
+                        },
+                        method: 'post',
+                        success: (response) => {
+                            if(response.status){
+                                $("#allWishlist").load(location.href + " #allWishlist");
+                            }
+                            
+                        }
+                    })
                 }
-            });
-            if ($("#fname").val().length < 3) {
-                $("#name-Text").show();
-                $("#name-Text").text("Name should have type morethan 3 characters");
-                $("#name-Text").css("class", "invalid-feedback");
-                nameValidated = false;
-            }
-        });
-        $("#fname").blur(function () {
-            if ($("#fname").val() == "") {
-                $("#name-Text").show();
-                $("#name-Text").text("Name should not be empty!");
-                $("#name-Text").css("class", "invalid-feedback");
-                nameValidated = false;
-            }
-        });
-
-
-        $("#numberValidation").keypress(function (num) {
-            return num.charCode >= 48 && num.charCode <= 57;
-        });
-        $("#numberValidation").keyup(function () {
-            if ($("#numberValidation").val().match(/^\d+$/)) {
-                $("#text-Number").show();
-                $("#text-Number").text(" ");
-                phoneValidated = true;
-            }
-            if ($("#numberValidation").val().length < 10) {
-                $("#text-Number").show();
-                $("#text-Number").text("Phone number should be 10 digits!");
-                $("#text-Number").css("class", "invalid-feedback");
-                phoneValidated = false;
-            }
-        });
-
-        $("#numberValidation").blur(function () {
-            if ($("#numberValidation").val() == "") {
-                $("#text-Number").show();
-                $("#text-Number").text("Phone number is required!");
-                $("#text-Number").css("class", "invalid-feedback");
-                phoneValidated = false;
-            }
-        });
-
-
-        $("#address").keyup(function () {
-            if ($("#address").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#address-Text").show();
-                $("#address-Text").text(" ");
-                addressValidated = true;
-            } else {
-                $("#address-Text").show();
-                $("#address-Text").text("Invalid Address! try again");
-                $("#address-Text").css("class", "invalid-feedback");
-                addressValidated = false;
-            }
-            $("#address").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#address").val().length < 3) {
-                $("#address-Text").show();
-                $("#address-Text").text("Address should have type morethan 3 characters");
-                $("#address-Text").css("class", "invalid-feedback");
-                addressValidated = false;
-            }
-        });
-        $("#address").blur(function () {
-            if ($("#address").val() == "") {
-                $("#address-Text").show();
-                $("#address-Text").text("Address should not be empty!");
-                $("#address-Text").css("class", "invalid-feedback");
-                addressValidated = false;
-            }
-        });
-
-        $("#location").keyup(function () {
-            if ($("#location").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#location-Text").show();
-                $("#location-Text").text(" ");
-                locationValidated = true;
-            } else {
-                $("#location-Text").show();
-                $("#location-Text").text("Invalid location! try again");
-                $("#location-Text").css("class", "invalid-feedback");
-                locationValidated = false;
-            }
-            $("#location").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#location").val().length < 3) {
-                $("#location-Text").show();
-                $("#location-Text").text("location should have type morethan 3 characters");
-                $("#location-Text").css("class", "invalid-feedback");
-                locationValidated = false;
-            }
-        });
-        $("#location").blur(function () {
-            if ($("#location").val() == "") {
-                $("#location-Text").show();
-                $("#location-Text").text("location should not be empty!");
-                $("#location-Text").css("class", "invalid-feedback");
-                locationValidated = false;
-            }
-        });
-
-        $("#city").keyup(function () {
-            if ($("#city").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#city-Text").show();
-                $("#city-Text").text(" ");
-                cityValidated = true;
-            } else {
-                $("#city-Text").show();
-                $("#city-Text").text("Invalid city! try again");
-                $("#city-Text").css("class", "invalid-feedback");
-                cityValidated = false;
-            }
-            $("#city").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#city").val().length < 3) {
-                $("#city-Text").show();
-                $("#city-Text").text("city should have type morethan 3 characters");
-                $("#city-Text").css("class", "invalid-feedback");
-                cityValidated = false;
-            }
-        });
-        $("#city").blur(function () {
-            if ($("#city").val() == "") {
-                $("#city-Text").show();
-                $("#city-Text").text("city should not be empty!");
-                $("#city-Text").css("class", "invalid-feedback");
-                cityValidated = false;
-            }
-        });
-
-
-
-        $("#pinValidation").keypress(function (num) {
-            return num.charCode >= 48 && num.charCode <= 57;
-        });
-        $("#pinValidation").keyup(function () {
-            if ($("#pinValidation").val().match(/^\d+$/)) {
-                $("#text-pin").show();
-                $("#text-pin").text(" ");
-                pinValidated = true;
-            }
-            if ($("#pinValidation").val().length < 6) {
-                $("#text-pin").show();
-                $("#text-pin").text("pin should be 6 digits!");
-                $("#text-pin").css("class", "invalid-feedback");
-                pinValidated = false;
-            }
-        });
-
-        $("#pinValidation").blur(function () {
-            if ($("#pinValidation").val() == "") {
-                $("#text-pin").show();
-                $("#text-pin").text("Pin is required!");
-                $("#text-pin").css("class", "invalid-feedback");
-                pinValidated = false;
-            }
-        });
-
-
-
-
-
-
-        $("#state").keyup(function () {
-            if ($("#state").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#state-Text").show();
-                $("#state-Text").text(" ");
-                stateValidated = true;
-            } else {
-                $("#state-Text").show();
-                $("#state-Text").text("Invalid city! try again");
-                $("#state-Text").css("class", "invalid-feedback");
-                stateValidated = false;
-            }
-            $("#state").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#state").val().length < 3) {
-                $("#state-Text").show();
-                $("#state-Text").text("city should have type morethan 3 characters");
-                $("#state-Text").css("class", "invalid-feedback");
-                stateValidated = false;
-            }
-        });
-        $("#state").blur(function () {
-            if ($("#state").val() == "") {
-                $("#state-Text").show();
-                $("#state-Text").text("city should not be empty!");
-                $("#state-Text").css("class", "invalid-feedback");
-                stateValidated = false;
-            }
-        });
-
-
-
-        $("#checkout-form").submit(function (num) {
-            if ($("#fname").val() == "" || $("#numberValidation").val() == "" ||
-                $("#address").val() == "" || $("#location").val() == "" || $("#city").val() == ""
-                || $("#pinValidation").val() == "" || $("#state").val() == "") {
-                // alert("please fill the form properly");
-                Swal.fire(
-                    'Unknown error !',
-                    'please fill the form properly',
-                    'warning'
-                )
-            }
-            if ($("#fname").val() == "" && $("#numberValidation").val() == ""
-                && $("#address").val() == "" && $("#location").val() == "" && $("#city").val() == ""
-                && $("#pinValidation").val() == "" && $("#state").val() == "") {
-                num.preventDefault();
-                console.log('com in if');
-                $("#name-Text").show();
-                $("#text-Number").show();
-                $("#address-Text").show();
-                $("#location-Text").show();
-                $("#city-Text").show();
-                $("#text-pin").show();
-                $("#state-Text").show();
-            } else if (
-                nameValidated &&
-                phoneValidated &&
-                addressValidated &&
-                locationValidated &&
-                pinValidated &&
-                cityValidated &&
-                stateValidated
-
-            ) {
-                num.preventDefault();
-                $.ajax({
-                    url: '/addAddressCheckout',
-                    method: 'post',
-                    data: $('#checkout-form').serialize(),
-                    success: (response) => {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Your address has been saved',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $("#allAddress").load(location.href + " #allAddress");
-                        $("#add-address-form").load(location.href + " #add-address-form");
-
-
-                    }
-                })
-
-                //   $.ajax({
-                //     url: '/signup',
-                //     data: $('#siginup_form').serialize(),
-                //     method: 'post',
-                //     success: (response) => {
-                //       if (response.status) {
-                //         location.href = '/login'
-                //       } else {
-                //         document.getElementById('erorrMessage').innerHTML = "sorry change your number"
-                //       }
-                //     }
-                //   })
-
-            } else {
-                num.preventDefault();
-            }
-        });
-        
+            })
+        }
     </script>
 
 </body>
 
-<!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Nov 2021 19:16:48 GMT -->
+<!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Nov 2021 19:16:49 GMT -->
+
 </html>
