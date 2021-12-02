@@ -134,7 +134,7 @@ productObj={
         return new Promise(async(resolve,reject)=>{
            var products= await db.get().collection(collection.productCollection).find({productname:{$regex:productName}}).toArray()
             if (products){
-                resolve({status:true,products})
+                resolve(products)
             }else{
                 resolve(null)
             }

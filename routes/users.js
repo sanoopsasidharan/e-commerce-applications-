@@ -153,12 +153,44 @@ router.get('/product',async(req,res)=>{
 })
 
 // search products
-router.post('/productSearch',(req,res)=>{
+
+router.post('/productSearch',async(req,res)=>{
   console.log(req.body.searchValue);
-  productHelpers.searchProduct(req.body.searchValue).then((products)=>{
-    res.json(products)
+  let user
+  let cartCount
+  if(req.session.loggedIn){
+    user = req.session.user
+  }else{
+    user =false
+  }
+  if(req.session.loggedIn){
+    cartCount=await cartHelpers.getCartCount(req.session.user._id)
+  }else{
+    cartCount=false
+  }
+  // let user = req.session.user
+  var result
+  await categoryHelpers.showAllCategorysubcate().then((results)=>{
+    result = results
+    console.log(result);
   })
+ 
+   await productHelpers.searchProduct(req.body.searchValue).then((product)=>{
+
+      res.render('user/product',{admin:0,user,result,product,cartCount,})
+    })
+  
 })
+
+// search product in ajax
+
+// router.post('/productSearch',async(req,res)=>{
+
+//   console.log(req.body.searchValue);
+//   await productHelpers.searchProduct(req.body.searchValue).then((product)=>{
+//     res.json({product})
+//   })
+// })
 
 
 // show product divied by category

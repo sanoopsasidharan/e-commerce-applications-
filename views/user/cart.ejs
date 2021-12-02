@@ -314,7 +314,7 @@
                 <div class="ec-cart-rightside col-lg-4 col-md-12">
                     <div class="ec-sidebar-wrap">
                         <!-- Sidebar Summary Block -->
-                        <div class="ec-sidebar-block">
+                        <div id="ProductDetails" class="ec-sidebar-block">
                             <div class="ec-sb-title">
                                 <h3 class="ec-sidebar-title">Summary</h3>
                             </div>
@@ -364,8 +364,12 @@
                                 <div class="ec-cart-summary-bottom">
                                     <div class="ec-cart-summary">
                                         <div>
-                                            <span  class="text-left">price of ( <span> <%= cartCount%></span> items)  </span>
-                                            <span class="text-right">₹ <span id="Itemstotal"><%= total%></span></span>
+                                            <span class="text-left">price of ( <span>
+                                                    <%= cartCount%>
+                                                </span> items) </span>
+                                            <span class="text-right">₹ <span id="Itemstotal">
+                                                    <%= total%>
+                                                </span></span>
                                         </div>
                                         <div>
                                             <span class="text-left">Sub-Total</span>
@@ -1251,8 +1255,11 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function changeQuantity(cartId, proId, userId, count) {
-            console.log(proId);
             let quantity = parseInt(document.getElementById(proId).innerHTML)
+            // if (quantity <= 2) {
+            //     var myobj = document.getElementById("pluse");
+            //     myobj.remove();
+            // }
             count = parseInt(count)
             $.ajax({
                 url: '/change-product-cound',
@@ -1281,9 +1288,8 @@
                             icon: 'success',
                             title: 'Product Remove From Cart'
                         })
-                        //    alert('product removed form cart')
-                        //    location.reload()
                         $("#fullcart").load(location.href + " #fullcart");
+                        $("#ProductDetails").load(location.href + " #ProductDetails");
                     } else {
                         document.getElementById(proId).innerHTML = quantity + count
                         document.getElementById('total').innerHTML = response.total
@@ -1292,6 +1298,7 @@
 
                         //    to edit this line when go check out page return back conut is 1 and add this line
                         $("#fullcart").load(location.href + " #fullcart");
+                        $("#ProductDetails").load(location.href + " #ProductDetails");
                     }
 
                 }
@@ -1324,6 +1331,7 @@
                         success: (response) => {
                             if (response.status) {
                                 $("#fullcart").load(location.href + " #fullcart");
+                                $("#ProductDetails").load(location.href + " #ProductDetails");
                             }
 
                         }

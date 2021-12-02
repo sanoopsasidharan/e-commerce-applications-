@@ -190,7 +190,8 @@
                                                             class="svg_img pro_svg" alt="" /></a>
 
                                                     <div class="ec-pro-actions">
-                                                        <a href="" class="ec-btn-group compare"
+                                                        <a onclick="addToCart('<%= wishListItems[i].product[0]._id %>')"
+                                                             class="ec-btn-group compare"
                                                             title="Compare"><img src="assets/images/icons/cart.svg"
                                                                 class="svg_img pro_svg" alt="" /></a>
                                                         
@@ -960,6 +961,39 @@
                 }
             })
         }
+
+        function addToCart(proId) {
+
+$.ajax({
+    url: '/addTocarts/' + proId,
+    method: 'get',
+    success: (response) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Product Add In Cart'
+        })
+
+
+        var count = response.cartCount
+
+        $('#coundtId').html(count)
+        count = parseInt(count) + 1
+        $('#coundtId').html(count)
+
+        // alert(response)
+    }
+})
+}
     </script>
 
 </body>
