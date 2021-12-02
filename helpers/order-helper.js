@@ -143,15 +143,7 @@ module.exports={
                 resolve()
             })
         })
-    },
-    SalesReportAllOrders:()=>{
-        return new Promise(async(resolve,reject)=>{
-         var orders = await  db.get().collection(collection.orderCollection).aggregate([{$match:{status:'Completed'}}]).toArray()
-         if(orders){
-             resolve(orders)
-         }else{
-             resolve(null)
-         }
-        })
     }
+    
+    
 }

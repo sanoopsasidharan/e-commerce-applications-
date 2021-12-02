@@ -7,6 +7,7 @@ const productHelpers = require('../helpers/product-helpers');
 const userHelpers = require('../helpers/user-helpers')
 const cartHelpers = require('../helpers/cart-helpers')
 const orderHelpers = require('../helpers/order-helper');
+const salesHelpers = require('../helpers/sales-helpers');
 const { response } = require('express');
 var addProductPopup = false;
 
@@ -246,19 +247,49 @@ router.get('/logout',(req,res)=>{
 
 // sales report in admin side
 router.get('/salesReport',verifyLogin,(req,res)=>{
-    orderHelpers.SalesReportAllOrders().then((orders)=>{
+    salesHelpers.SalesReportAllOrders().then((orders)=>{
         res.render('admin/salesReport',{admin:1,orders})  
     })
 })
-router.post('salesReportDay',(req,res)=>{
-    console.log(req.body);
-    // orderHelpers.salesReportSortInDate(req.body)
+router.get('/salesReportSorting',(req,res)=>{
+    console.log(req.query.type);
+    salesHelpers.getReportData(req.query.type   ).then((orders)=>{
+        res.render('admin/salesReport',{admin:1,orders}) 
+    })
+})
+
+
+//sample chart js 
+router.get('/chart',(req,res)=>{  
+        res.render('admin/charts',{admin:2})
+  
+}) 
+
+router.post('/getGraphResponse',async(req,res)=>{
+    console.log('getGraphResponse');
+
+    var statusData =await salesHelpers.getOrdersStatus()
+   var ProductItemsCount = await productHelpers.totalProductCount()
+   var revanu = await salesHelpers.totalRevanu()
+   var totalcompleteSales = await salesHelpers.totalOrderCompletedCound()
+    await salesHelpers.getWeeklyUsers().then((values)=>{
+        res.json({values,statusData,ProductItemsCount,revanu,totalcompleteSales})
+    })
+})
+
+router.post('/salesStatus',(req,res)=>{
+
 })
 
 // sample 
 router.get('/sample',(req,res)=>{
-    res.render('admin/sampleForm',{admin:9})
+ 
+        res.render('admin/sampleForm',{admin:9})
+   
 })
+
+
+
 router.post('/samplee/',(req,res)=>{
  console.log(req.files.file1);
 console.log('callldede ');

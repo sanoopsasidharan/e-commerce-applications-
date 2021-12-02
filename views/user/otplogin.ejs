@@ -316,10 +316,10 @@
     
         
     
-        <form action="/otp" method="POST" id="siginup_form">
+        <form onsubmit="return fromSubmit()" action="/otp" method="POST" id="siginup_form">
         <h1 class="h1Tag">OTP</h1>
           
-          <input type="text"  id="password" class="fadeIn third" name="number" maxlength="10" placeholder="Phone" required>
+          <input type="text"  id="password" class="fadeIn third" name="number" maxlength="10" placeholder="Phone">
          
           <input style="margin: 0; padding: 10px;" type="submit" id="login" class="fadeIn fourth" value="SignUp">
           
@@ -329,13 +329,25 @@
       </div>
     </div><script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
     $("input[name=number]").keypress(function(e){
 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
 $("#errmsg").html("Digits only").show().fadeOut("slow");
 return false;
 }
+
+
 });
+
+function fromSubmit(){
+  let pas = document.getElementById('password').value
+  if (pas.length !=10){
+    Swal.fire('you can enter only valid numbers')
+    return false
+  }
+}
         
     </script>
     

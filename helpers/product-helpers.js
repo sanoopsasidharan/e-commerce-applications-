@@ -139,6 +139,17 @@ productObj={
                 resolve(null)
             }
         })
-    }
+    },
+    totalProductCount:()=>{
+        return new Promise (async(resolve,reject)=>{
+            let totalItems =await  db.get().collection(collection.productCollection).find({}).toArray()
+            console.log(totalItems.length);
+            if(totalItems.length){
+                resolve(totalItems.length)
+            }else{
+                resolve(null)
+            }
+        })
+        }
 
 }

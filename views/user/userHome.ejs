@@ -187,27 +187,32 @@
                                                      <img class="hover-image"
                                                          src="/productimage/image1/<%=allProducts[i]._id%>_2.jpg" alt="Product" />
                                                  </a>
+
+
+                                                
+
                                                  <!-- <span class="percentage">20%</span> -->
-                                                 <a href="#" class="quickview" data-link-action="quickview"
-                                                     title="Quick view" data-bs-toggle="modal"
-                                                     data-bs-target="#ec_quickview_modal"><img
+                                                 <a href="/productdetails?id=<%= allProducts[i]._id %>" class="quickview"><img
                                                          src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
                                                          alt="" /></a>
                                                  <div class="ec-pro-actions">
-                                                     <a href="compare.html" class="ec-btn-group compare"
+
+                                                     <a onclick="addToCart('<%= allProducts[i]._id %>')" class="ec-btn-group compare"
                                                          title="Compare"><img src="assets/images/icons/compare.svg"
                                                              class="svg_img pro_svg" alt="" /></a>
+
+
                                                      <button title="Add To Cart" class="add-to-cart"><img
                                                              src="assets/images/icons/cart.svg" class="svg_img pro_svg"
                                                              alt="" /> Add To Cart</button>
-                                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                     <a  onclick="wishlist('<%= allProducts[i]._id %>')" class="ec-btn-group wishlist" title="Wishlist"><img
                                                              src="assets/images/icons/wishlist.svg"
                                                              class="svg_img pro_svg" alt="" /></a>
                                                  </div>
                                              </div>
                                          </div>
                                          <div class="ec-pro-content">
-                                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html"> <%= allProducts[i].productname %></a></h5>
+                                             <h5 class="ec-pro-title"><a href="/productdetails?id=<%= allProducts[i]._id %>"> <%= allProducts[i].productname %></a></h5>
                                              <!-- <div class="ec-pro-rating">
                                                  <i class="ecicon eci-star fill"></i>
                                                  <i class="ecicon eci-star fill"></i>
@@ -4034,6 +4039,7 @@
      <!-- Main Js -->
      <script src="assets/js/vendor/index.js"></script>
      <script src="assets/js/main.js"></script>
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <!-- <script>
          function showProducts(cateName){
             $.ajax({
@@ -4049,6 +4055,54 @@
             })
          }
      </script> -->
+     <script>
+         function wishlist(proId) {
+            $.ajax({
+                url: '/wishlist',
+                data: {
+                    proId: proId
+                },
+                method: 'post',
+                success: (response) => {
+                    if (response.status) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Product add in to Wishlist'
+                        })
+
+                    } else {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'product allready in Wishlist'
+                        })
+
+                    }
+                }
+            })
+        }
+     </script>
  </body>
  
  <!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Nov 2021 19:15:38 GMT -->
