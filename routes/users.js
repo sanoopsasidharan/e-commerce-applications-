@@ -219,7 +219,8 @@ router.get('/cateproduct/',async(req,res)=>{
  await productHelpers.productDividedCategory(idOfCat).then((product)=>{
     console.log(product);
     console.log(result);
-    res.render('user/product-by-category',{admin:0,user,result,product,cartCount})
+    res.render('user/product',{admin:0,user,result,product,cartCount})
+    // res.render('user/product-by-category',{admin:0,user,result,product,cartCount})
   })
 
 })
@@ -246,9 +247,9 @@ router.get('/subcategory-products/',async(req,res)=>{
  await categoryHelpers.showAllCategorysubcate().then((results)=>{
     result = results
   })
-  let subProducts = await productHelpers.getSubProducts(reqcategory,reqId)
-
-  res.render('user/product-by-subcategory',{admin:0,user,result,cartCount,subProducts})
+  let product = await productHelpers.getSubProducts(reqcategory,reqId)
+  res.render('user/product',{admin:0,user,result,product,cartCount})
+  // res.render('user/product-by-subcategory',{admin:0,user,result,cartCount,subProducts})
 })
 
 
