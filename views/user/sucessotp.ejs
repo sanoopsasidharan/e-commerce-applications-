@@ -304,7 +304,10 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
     <div class="wrapper fadeInDown">
       <div id="formContent">
         <!-- Tabs Titles -->
@@ -322,9 +325,9 @@
         <form  id="siginup_form">
         <h1 class="h1Tag">OTP</h1>
           
-          <input type="number" maxlength="10" id="password" value="<%= result.number %>" class="fadeIn third" name="number" placeholder="Phone" required>
-          <input type="number" maxlength="4" id="password"  class="fadeIn third" name="code" placeholder="code" required>
-         
+          <input type="text" maxlength="10" id="" value="<%= result.number %>" class="fadeIn third" name="number" placeholder="Phone" required>
+          <input type="text" maxlength="4" id="password"  class="fadeIn third" name="code" placeholder="code" >
+          <div class="invalid-feedback" id="text-Number">Enter OTP </div>
           <input style="margin: 0; padding: 10px;" type="submit" id="login" class="fadeIn fourth" value="SignUp">
           
         </form>
@@ -334,9 +337,54 @@
     </div>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-      $('#siginup_form').submit((num)=>{
-        num.preventDefault()
-        $.ajax({
+
+  var phoneValidated = false;
+  
+$("#password9").keypress(function (num) {
+    return num.charCode >= 48 && num.charCode <= 57;
+  });
+  $("#password").keyup(function () {
+    if ($("#password").val().match(/^\d+$/)) {
+      $("#text-Number").show();
+      $("#text-Number").text(" ");
+      phoneValidated = true;
+    }
+    if ($("#password").val().length < 4 ) {
+      $("#text-Number").show();
+      $("#text-Number").text("Otp should be 4 digits!");
+      $("#text-Number").css("class", "invalid-feedback");
+      phoneValidated = false;
+    }
+  });
+
+  $("#password").blur(function () {
+    if ($("#password").val() == "") {
+      $("#text-Number").show();
+      $("#text-Number").text(" otp is required!");
+      $("#text-Number").css("class", "invalid-feedback");
+      phoneValidated = false;
+    }
+  });
+
+
+
+  $("#siginup_form").submit(function (num) {
+    if ( $("#password").val() == "") {
+      Swal.fire(
+        'Unknown error !',
+        'please fill the form properly',
+        'warning'
+      )
+    }
+    if ( $("#password").val() == "") {
+      num.preventDefault();
+      $("#text-Number").show();
+
+    } else if (
+      phoneValidated
+    ) {
+      num.preventDefault();
+      $.ajax({
           url:'sucessotp',
           data:$('#siginup_form').serialize(),
           method:'post',
@@ -348,7 +396,31 @@
             }
           }
         })
-      })
+
+    } else {
+      num.preventDefault();
+    }
+  });
+
+
+
+
+
+      // $('#siginup_form').submit((num)=>{
+      //   num.preventDefault()
+      //   $.ajax({
+      //     url:'sucessotp',
+      //     data:$('#siginup_form').serialize(),
+      //     method:'post',
+      //     success:(response)=>{
+      //       if(response.status){
+      //         location.href = '/'
+      //       }else{
+      //         Swal.fire('please enter valid otp')
+      //       }
+      //     }
+      //   })
+      // })
     </script>
     
 

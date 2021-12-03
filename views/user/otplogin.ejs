@@ -353,22 +353,18 @@
 
     <form onsubmit="return fromSubmit()" action="/otp" method="POST" id="siginup_form">
       <h1 class="h1Tag">OTP</h1>
-  
-      <input type="text" id="password" class="fadeIn third" name="number" maxlength="10" placeholder="Phone">
-      <% if(OtpNumberValidation){ %>
-        <p style="color: red;">sorry wrong number please try again</p>
-      <% } else{ %>  
-       
-     <% } %>
 
-     <% if(blocked){ %>
-      <p style="color: red;">sorry your account is blocked</p>
-    <% } else{ %>  
-     
-   <% } %>
+      <input type="text" id="password" class="fadeIn third" name="number" maxlength="10" placeholder="Phone">
 
       <input style="margin: 0; padding: 10px;" type="submit" id="login" class="fadeIn fourth" value="SignUp">
 
+      <% if(OtpNumberValidation){ %>
+        <p style="color: red; margin-top: 5px;"> number not found please try again</p>
+     <% } %>
+
+     <% if(blocked){ %>
+      <p style="color: red;">Your account is blocked</p>
+   <% } %>
     </form>
 
 
@@ -398,12 +394,7 @@
   // $('#siginup_form').submit((num)=>{
   //   num.preventDefault()
   //   $.ajax({
-  //     url:'/Otpnum',
-  //     data:$('#siginup_form').serialize(),
-  //     method:'post',
-  //     success:(response)=>{
-  //       alert(response)
-  //     }
+  //     url:''
   //   })
   // })
 
