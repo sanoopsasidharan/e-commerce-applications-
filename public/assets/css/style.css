@@ -22522,8 +22522,8 @@ h4.ec-faq-title::after, .ec-faq-title.h4::after {
 
 .single-product-cover {
   overflow: hidden;
-  cursor: -webkit-zoom-in;
-  cursor: zoom-in;
+  /* cursor: -webkit-zoom-in;
+  cursor: zoom-in; */
 }
 
 .single-nav-thumb {
