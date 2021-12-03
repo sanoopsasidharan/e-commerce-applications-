@@ -318,8 +318,8 @@
     
     
         
-    
-        <form action="/sucessotp" method="POST" id="siginup_form">
+    <!-- <h1>action="/sucessotp" method="POST"</h1> -->
+        <form  id="siginup_form">
         <h1 class="h1Tag">OTP</h1>
           
           <input type="number" maxlength="10" id="password" value="<%= result.number %>" class="fadeIn third" name="number" placeholder="Phone" required>
@@ -332,6 +332,23 @@
     
       </div>
     </div>
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      $('#siginup_form').submit((num)=>{
+        num.preventDefault()
+        $.ajax({
+          url:'sucessotp',
+          data:$('#siginup_form').serialize(),
+          method:'post',
+          success:(response)=>{
+            if(response.status){
+              location.href = '/'
+            }else{
+              Swal.fire('please enter valid otp')
+            }
+          }
+        })
+      })
+    </script>
     
 

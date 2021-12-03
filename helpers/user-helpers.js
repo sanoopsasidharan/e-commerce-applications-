@@ -111,11 +111,10 @@ module.exports = {
 
             var result = await db.get().collection(collection.userCollection).findOne({ number: number })
             if (result) {
-
                 resolve(result)
-
             } else {
                 reject(null)
+                // resolve(null)
 
             }
 

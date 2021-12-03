@@ -12,6 +12,7 @@ dotenv.config();
 
 var logo = false
 var blocked = false
+
   const serviceID=process.env.serviceID
    const accountSID =process.env.accountSID
    const authToken =process.env.authToken
@@ -25,6 +26,7 @@ const verifyLogin=(req,res,next)=>{
   }
 }
 
+let OtpNumberValidation = false
 
 /* GET users listing. */
 router.get('/',async (req, res,)=> {
@@ -336,7 +338,9 @@ router.get('/otp',(req,res)=>{
   if(req.session.loggedIn){
     res.redirect('/')
   }else{
-    res.render('user/otplogin',{admin:2})
+    res.render('user/otplogin',{admin:2,OtpNumberValidation,blocked})
+    OtpNumberValidation= false
+    blocked=false
   }
 })
 
@@ -363,19 +367,36 @@ userHelpers.numberOtpValidation(Number).then((result)=>{
     }
  }else{
   blocked = true
-  res.redirect('/login')
+  res.redirect('/otp')
  }
 
 }).catch((e)=>{
-  res.send('sorry')
+  OtpNumberValidation=true
+  res.redirect('/otp')
+
 })
 
 
 })
+
+
+// otp validation in ajax
+// router.post('/Otpnum',(req,res)=>{
+//   console.log(req.body);
+//   userHelpers.numberOtpValidation(req.body.number).then((result)=>{
+//     if(result.isactive){
+      
+//     }else{
+
+//     }
+    
+//   }).catch((result)=>{
+//     res.json({status:false})
+//   })
+// })
 
 
 router.post('/sucessotp',(req,res)=>{
-  // console.log(req.body+'its req.body');
   
   var code = req.body.code
   var Number = req.body.number
@@ -387,26 +408,56 @@ router.post('/sucessotp',(req,res)=>{
       .create({to: `+91${Number}`, code:code})
       .then(verification_check => {
         console.log(verification_check.status)
-        if(verification_check.valid){
 
-          req.session.loggedIn=true;
-        
-          
+        if(verification_check.valid){
           userHelpers.numberOtpValidation(Number).then((response)=>{
+            req.session.loggedIn=true;
             console.log(response);
             req.session.user=response
-              res.redirect('/')
+              // res.redirect('/')
+              res.json({status:true})
           })
-
-
-
         }else{
-          res.redirect('/otp')
-          // res.send('sorry ur not find')
+          // res.redirect('/otp')
+          res.json({status:false})
         }
       });
     
 })
+
+
+// router.post('/sucessotp',(req,res)=>{
+  
+//   var code = req.body.code
+//   var Number = req.body.number
+//   console.log(req.body.code+'code of post');
+//   console.log(req.body.number+'number of post');
+
+//   client.verify.services(serviceID  )
+//       .verificationChecks
+//       .create({to: `+91${Number}`, code:code})
+//       .then(verification_check => {
+//         console.log(verification_check.status)
+//         if(verification_check.valid){
+
+//           req.session.loggedIn=true;
+        
+          
+//           userHelpers.numberOtpValidation(Number).then((response)=>{
+//             console.log(response);
+//             req.session.user=response
+//               res.redirect('/')
+//           })
+
+
+
+//         }else{
+//           res.redirect('/otp')
+         
+//         }
+//       });
+    
+// })
 
 // cart management
 
