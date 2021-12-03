@@ -192,6 +192,36 @@ router.post('/productSearch',async(req,res)=>{
 //   })
 // })
 
+// filter product in price range
+router.post('/filterProductInPrice',async(req,res)=>{
+  console.log(req.body.searchValue);
+  let user
+  let cartCount
+  if(req.session.loggedIn){
+    user = req.session.user
+  }else{
+    user =false
+  }
+  if(req.session.loggedIn){
+    cartCount=await cartHelpers.getCartCount(req.session.user._id)
+  }else{
+    cartCount=false
+  }
+  var result
+  await categoryHelpers.showAllCategorysubcate().then((results)=>{
+    result = results
+    console.log(result);
+  })
+ 
+  let mini = parseInt(req.body.miniPrice)
+  let maxi = parseInt(req.body.maxPrice)
+  console.log(mini,maxi);
+
+ await productHelpers.filterProductInPrice(mini,maxi).then((product)=>{
+    res.render('user/product',{admin:0,user,result,product,cartCount,})
+  })
+})
+
 
 // show product divied by category
 
