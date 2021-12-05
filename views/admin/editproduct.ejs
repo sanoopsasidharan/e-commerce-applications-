@@ -233,33 +233,42 @@ aria-hidden="true">
                                         <p class="card-title-desc">Fill all information below</p>
                                     </div>
                                     <div class="card-body">
-                                        <form action="/admin/editproduct/<%= product._id %>" enctype="multipart/form-data" method="POST" >
+                                        <form onsubmit="return fromSubmit()" action="/admin/editproduct/<%= product._id %>" enctype="multipart/form-data" method="POST" >
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="productname">product Name</label>
-                                                        <input id="productname" name="productname" value="<%= product.productname %>" type="text" class="form-control" required>
+                                                        <input id="productName" name="productname" value="<%= product.productname %>" type="text" class="form-control" >
+                                                        <div class="invalid-feedback" id="name-Text">enter your Name</div>
                                                     </div>
-                                                    <div class="mb-3">
+                                                    <!-- <div class="mb-3">
                                                         <label for="manufacturername">Manufacturer Name</label>
                                                         <input id="manufacturername" name="manufacturername" value="<%= product.manufacturername %>" type="text" class="form-control" required>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="mb-3">
-                                                        <label for="manufacturerbrand">Manufacturer Brand</label>
-                                                        <input id="manufacturerbrand" name="manufacturerbrand" value="<%= product.manufacturerbrand %>" type="text" class="form-control" required>
+                                                        <label for="manufacturerbrand"> Brand</label>
+                                                        <input id="manufacturerbrand" name="manufacturerbrand" value="<%= product.manufacturerbrand %>" type="text" class="form-control" >
+                                                        <div class="invalid-feedback" id="manufacturerbrand-Text">enter your
+                                                            Name</div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="productname">Product quantity</label>
-                                                        <input id="productname" name="quantity" type="text" value="<%= product.quantity %>" class="form-control" required>
+                                                        <input id="quantity" name="quantity" type="text" value="<%= product.quantity %>" class="form-control" >
+                                                        <div class="invalid-feedback" id="text-quantity">Enter your phone
+                                                            number </div>
                                                     </div>
-                                                    <!-- <div class="mb-3">
+                                                    <div class="mb-3">
                                                         <label for="productname">Product tag</label>
-                                                        <input id="productname" name="quantity" value="" type="text" class="form-control">
+                                                        <input id="tag" name="tag" value="" type="text" class="form-control">
+                                                        <div class="invalid-feedback" id="tag-Text">Enter your phone number
+                                                        </div>
                                                     </div>
-                                                     -->
+                                                    
                                                     <div class="mb-3">
                                                         <label for="price">Price</label>
-                                                        <input id="price" name="price" value="<%= product.price %>" type="text" class="form-control" required>
+                                                        <input id="price" name="price" value="<%= product.price %>" type="text" class="form-control" >
+                                                        <div class="invalid-feedback" id="text-price">Enter your phone
+                                                            number </div>
                                                     </div>
                                                 </div>
         
@@ -267,7 +276,7 @@ aria-hidden="true">
                                                     <div class="mb-3">
                                                         <label class="control-label"><%= product.category %></label>
                                                         <select onchange="getsubcat()" id="categoryid" name='category' class="form-control">
-                                                            <option>Select</option>
+                                                
                                                             <% for(var i=0; i< response.length; i++) {%>
                                                             <option value="<%= response[i].category %>"><%= response[i].category %></option>
                                                             <% } %>
@@ -277,14 +286,20 @@ aria-hidden="true">
                                                         <label class="control-label"><%= product.subcategory %></label>
         
                                                         <select class="select2 form-control select2-multiple" name="subcategory" id="chage-subcategory">
-                                                            <option value=""></option>
+                                                            <% for(var i=0; i< response.length; i++) {%>
+                                                                <option value="<%= response[i].subcategory[i] %>">
+                                                                    <%= response[i].subcategory[i] %>
+                                                                </option>
+                                                                <% } %>
+                                                            
                                                             
                                                         </select>
         
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="productdesc">Product Description</label>
-                                                        <input id="productdesc" name="productdiscription" value="<%= product.productdiscription %>" type="text" rows="5" class="form-control" required>
+                                                        <input id="description" name="productdiscription" value="<%= product.productdiscription %>" type="text" rows="5" class="form-control" >
+                                                        <div class="invalid-feedback" id="msg-text">Text a message</div>
                                                         <!-- <textarea class="form-control" id="productdesc" rows="5"></textarea> -->
                                                     </div>
                                                    
@@ -319,7 +334,7 @@ aria-hidden="true">
                                                                     <!-- <h4 class="title"> Image 1</h4> -->
                                                                     <div class="fileinput fileinput-new text-center">
                                                                         <div class="fileinput-new thumbnail">
-                                                                            <img src="/productimage/image1/<%=product._id%>_1.jpg" id="chekPreview1" alt="...">
+                                                                            <img style="width: 70px;" src="/productimage/image1/<%=product._id%>_1.jpg" id="chekPreview1" alt="...">
                                                         
                                                                         </div>
                                                                         <div>
@@ -337,7 +352,7 @@ aria-hidden="true">
                                                                     <!-- <h4 class="title"> Image 2</h4> -->
                                                                     <div class="fileinput fileinput-new text-center">
                                                                         <div class="fileinput-new thumbnail">
-                                                                            <img src="/productimage/image1/<%=product._id%>_2.jpg" id="chekPreview2" alt="...">
+                                                                            <img style="width: 70px;" src="/productimage/image1/<%=product._id%>_2.jpg" id="chekPreview2" alt="...">
                                                         
                                                                         </div>
                                                                         <div>
@@ -354,7 +369,7 @@ aria-hidden="true">
                                                                     <!-- <h4 class="title"> Image 3</h4> -->
                                                                     <div class="fileinput fileinput-new text-center">
                                                                         <div class="fileinput-new thumbnail">
-                                                                            <img src="/productimage/image1/<%=product._id%>_3.jpg" id="chekPreview3" alt="...">
+                                                                            <img style="width: 70px;" src="/productimage/image1/<%=product._id%>_3.jpg" id="chekPreview3" alt="...">
                                                         
                                                                         </div>
                                                                         <div>
@@ -635,6 +650,10 @@ aria-hidden="true">
 
         <!-- init js -->
         <script src="assets/js/pages/ecommerce-select2.init.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+
 
         <script src="assets/js/app.js"></script>
         <script>
@@ -671,7 +690,226 @@ aria-hidden="true">
                  })
              }
          </script>
+<script>
+    var nameValidated 
+    var brandValidation 
+    var quantityValidation 
+    var tagValidated 
+    var priceValidation 
+    var descriptionVaildate 
 
+
+    $("#productName").keyup(function () {
+        if ($("#productName").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+            $("#name-Text").show();
+            $("#name-Text").text(" ");
+            nameValidated = true;
+        } else {
+            $("#name-Text").show();
+            $("#name-Text").text("Invalid Product Name! try again");
+            $("#name-Text").css("class", "invalid-feedback");
+            nameValidated = false;
+        }
+        $("#productName").keypress(function (num) {
+            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                num.preventDefault();
+            }
+        });
+        if ($("#productName").val().length < 3) {
+            $("#name-Text").show();
+            $("#name-Text").text("Product Name should have type morethan 3 characters");
+            $("#name-Text").css("class", "invalid-feedback");
+            nameValidated = false;
+        }
+    });
+    $("#productName").blur(function () {
+        if ($("#nameValidation").val() == "") {
+            $("#name-Text").show();
+            $("#name-Text").text("Product Name should not be empty!");
+            $("#name-Text").css("class", "invalid-feedback");
+            nameValidated = false;
+        }
+    });
+
+
+    $("#manufacturerbrand").keyup(function () {
+        if ($("#manufacturerbrand").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+            $("#manufacturerbrand-Text").show();
+            $("#manufacturerbrand-Text").text(" ");
+            brandValidation = true;
+        } else {
+            $("#manufacturerbrand-Text").show();
+            $("#manufacturerbrand-Text").text("Invalid Brand Name! try again");
+            $("#manufacturerbrand-Text").css("class", "invalid-feedback");
+            brandValidation = false;
+        }
+        $("#manufacturerbrand").keypress(function (num) {
+            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                num.preventDefault();
+            }
+        });
+        if ($("#manufacturerbrand").val().length < 3) {
+            $("#manufacturerbrand-Text").show();
+            $("#manufacturerbrand-Text").text("Brand Name should have type morethan 3 characters");
+            $("#manufacturerbrand-Text").css("class", "invalid-feedback");
+            brandValidation = false;
+        }
+    });
+    $("#manufacturerbrand").blur(function () {
+        if ($("#manufacturerbrand").val() == "") {
+            $("#manufacturerbrand-Text").show();
+            $("#manufacturerbrand-Text").text("Brand Name should not be empty!");
+            $("#manufacturerbrand-Text").css("class", "invalid-feedback");
+            brandValidation = false;
+        }
+    });
+
+
+    $("#quantity").keypress(function (num) {
+        return num.charCode >= 48 && num.charCode <= 57;
+    });
+    $("#quantity").keyup(function () {
+        if ($("#quantity").val().match(/^\d+$/)) {
+            $("#text-quantity").show();
+            $("#text-quantity").text(" ");
+            quantityValidation = true;
+        }
+        if ($("#quantity").val().length < 1) {
+            $("#text-quantity").show();
+            $("#text-quantity").text("quantity MoreThan 1");
+            $("#text-quantity").css("class", "invalid-feedback");
+            quantityValidation = false;
+        }
+    });
+
+    $("#quantity").blur(function () {
+        if ($("#quantity").val() == "") {
+            $("#text-quantity").show();
+            $("#text-quantity").text("quantity is required!");
+            $("#text-quantity").css("class", "invalid-feedback");
+            quantityValidation = false;
+        }
+    });
+
+    $("#tag").keyup(function () {
+        if ($("#tag").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+            $("#tag-Text").show();
+            $("#tag-Text").text(" ");
+            tagValidated = true;
+        } else {
+            $("#tag-Text").show();
+            $("#tag-Text").text("Invalid quantity! try again");
+            $("#tag-Text").css("class", "invalid-feedback");
+            tagValidated = false;
+        }
+        $("#tag").keypress(function (num) {
+            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                num.preventDefault();
+            }
+        });
+        if ($("#tag").val().length < 3) {
+            $("#tag-Text").show();
+            $("#tag-Text").text("Tag Name should have type morethan 3 characters");
+            $("#tag-Text").css("class", "invalid-feedback");
+            tagValidated = false;
+        }
+    });
+    $("#tag").blur(function () {
+        if ($("#tag").val() == "") {
+            $("#tag-Text").show();
+            $("#tag-Text").text("Tag Name should not be empty!");
+            $("#tag-Text").css("class", "invalid-feedback");
+            tagValidated = false;
+        }
+    });
+
+
+    $("#price").keypress(function (num) {
+        return num.charCode >= 48 && num.charCode <= 57;
+    });
+    $("#price").keyup(function () {
+        if ($("#price").val().match(/^\d+$/)) {
+            $("#text-price").show();
+            $("#text-price").text(" ");
+            priceValidation = true;
+        }
+        if ($("#price").val().length < 1) {
+            $("#text-price").show();
+            $("#text-price").text("Price MoreThan 1");
+            $("#text-price").css("class", "invalid-feedback");
+            priceValidation = false;
+        }
+    });
+
+    $("#price").blur(function () {
+        if ($("#price").val() == "") {
+            $("#text-price").show();
+            $("#text-price").text("price is required!");
+            $("#text-price").css("class", "invalid-feedback");
+            priceValidation = false;
+        }
+    });
+
+    $("#description").keyup(function () {
+        if ($("#description").val().length < 5) {
+            $("#msg-text").show();
+            $("#msg-text").text("description length must be written morethan 5 characters");
+            $("#msg-text").css("class", "invalid-feedback");
+            descriptionVaildate = false;
+        } else {
+            $("#msg-text").show();
+            $("#msg-text").text(" ");
+            descriptionVaildate = true;
+        }
+        if ($("#description").val() == "") {
+            $("#msg-text").show();
+            $("#msg-text").text("You must leave a description ");
+            $("#msg-text").css("class", "invalid-feedback");
+            descriptionVaildate = false;
+        }
+    });
+
+
+
+
+
+
+    function fromSubmit() {
+        if(nameValidated == false ){
+            $("#name-Text").show();
+            alert(' please full fill form')
+            return false
+        }
+        if(descriptionVaildate == false){
+            $("#msg-text").show();
+            alert(' please full fill form')
+            return false
+        }
+        if(brandValidation == false){
+            $("#manufacturerbrand-Text").show();
+            alert(' please full fill form')
+            return false
+        }
+        if(quantityValidation == false){
+            $("#text-quantity").show();
+            alert(' please full fill form')
+            return false
+        }
+
+        if(tagValidated == false){
+            $("#tag-Text").show();
+            alert(' please full fill form')
+            return false
+        }
+        if(priceValidation == false){
+            $("#text-price").show();
+            alert(' please full fill form')
+            return false
+        }
+
+
+    }
+</script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
@@ -722,8 +960,13 @@ aria-hidden="true">
 
     $('#crop1').click(function () {
         canvas = cropper1.getCroppedCanvas({
-            width: 150,
-            height: 150
+            minWidth: 256,
+                minHeight: 256,
+                maxWidth: 4096,
+                maxHeight: 4096,
+                fillColor: '#fff',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
         });
 
         canvas.toBlob(function (blob) {
@@ -775,8 +1018,13 @@ aria-hidden="true">
 
     $('#crop2').click(function () {
         canvas = cropper2.getCroppedCanvas({
-            width: 150,
-            height: 150
+            minWidth: 256,
+                minHeight: 256,
+                maxWidth: 4096,
+                maxHeight: 4096,
+                fillColor: '#fff',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
         });
 
         canvas.toBlob(function (blob) {
@@ -829,8 +1077,13 @@ aria-hidden="true">
 
     $('#crop3').click(function () {
         canvas = cropper3.getCroppedCanvas({
-            width: 150,
-            height: 150
+            minWidth: 256,
+                minHeight: 256,
+                maxWidth: 4096,
+                maxHeight: 4096,
+                fillColor: '#fff',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
         });
 
         canvas.toBlob(function (blob) {
