@@ -722,6 +722,11 @@ router.post('/removeProductInWishlist',(req,res)=>{
 })
 
 
+// user profile 
+router.get('/userProfile',(req,res)=>{
+  res.render('user/userProfile',{admin:9})
+})
+
 
 
 

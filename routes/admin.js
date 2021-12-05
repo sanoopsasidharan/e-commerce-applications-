@@ -9,7 +9,9 @@ const cartHelpers = require('../helpers/cart-helpers')
 const orderHelpers = require('../helpers/order-helper');
 const salesHelpers = require('../helpers/sales-helpers');
 const { response } = require('express');
+let fs = require ('fs')
 var addProductPopup = false;
+var addSuccussProduct = false;
 
 // session midleware of admin
 const verifyLogin=(req,res,next)=>{
@@ -59,7 +61,8 @@ router.get('/product',verifyLogin,async(req,res)=>{
 // add product show the from
 router.get('/add_product',verifyLogin,async(req,res)=>{
    await categoryHelpers.showAllCategory().then((response)=>{
-        res.render('admin/addProduct',{admin:1,response,addProductPopup})
+        res.render('admin/addProduct',{admin:1,response,addSuccussProduct})
+        addSuccussProduct =false
         addProductPopup =false;
     })
 })
@@ -74,15 +77,36 @@ router.post('/ajaxaddproduct',async(req,res)=>{
 
 // submit the add product form 
 router.post('/add_product',(req,res)=>{
+  
      productHelpers.addUser(req.body).then((response)=>{
         var id=""+response.insertedId
-        var image1=req.files.file1
-        var image2=req.files.file2
-        var image3=req.files.file3
-        image1.mv('./public/productimage/image1/'+id+'_1.jpg')
-        image2.mv('./public/productimage/image1/'+id+'_2.jpg')
-        image3.mv('./public/productimage/image1/'+id+'_3.jpg')
-        addProductPopup =true;
+
+        let image1 = req.body.image1
+        let image2 = req.body.image2
+        let image3 = req.body.image3
+        
+  
+        let path1 = './public/productimage/image1/' + id + '_1.jpg'
+        let path2 = './public/productimage/image1/' + id + '_2.jpg'
+        let path3 = './public/productimage/image1/' + id + '_3.jpg'
+        
+  
+        let img1 = image1.replace(/^data:([A-Za-z+/]+);base64,/, "")
+        let img2 = image2.replace(/^data:([A-Za-z+/]+);base64,/, "")
+        let img3 = image3.replace(/^data:([A-Za-z+/]+);base64,/, "")
+        
+  
+        fs.writeFileSync(path1, img1, { encoding: 'base64' })
+        fs.writeFileSync(path2, img2, { encoding: 'base64' })
+        fs.writeFileSync(path3, img3, { encoding: 'base64' })
+       
+        // var image1=req.files.file1
+        // var image2=req.files.file2
+        // var image3=req.files.file3
+        // image1.mv('./public/productimage/image1/'+id+'_1.jpg')
+        // image2.mv('./public/productimage/image1/'+id+'_2.jpg')
+        // image3.mv('./public/productimage/image1/'+id+'_3.jpg')
+        addSuccussProduct =true;
         res.redirect('/admin/add_product')
     })
 })
@@ -99,20 +123,37 @@ router.post('/editproduct/:id',(req,res)=>{
     
         productHelpers.afterEditProduct(req.params.id,req.body).then((response)=>{
             console.log(response);
-            var Id = response
-            console.log(Id);
-            var image = req.files.file1
-            var image2 = req.files.file2
-            var image3 = req.files.file3
-            
-    
+            var id = response
+            // console.log(Id);
         try{
-            if(image){image.mv('./public/productimage/image1/'+Id+'_1.jpg')}
-            if(image2){image2.mv('./public/productimage/image1/'+Id+'_2.jpg')}
-            if(image3){image3.mv('./public/productimage/image1/'+Id+'_3.jpg')}
+            if(req.body.image1.length!=0){
+                console.log('enter edit image 1');
+                let image1 = req.body.image1
+                let path1 = './public/productimage/image1/' + id + '_1.jpg'
+                let img1 = image1.replace(/^data:([A-Za-z+/]+);base64,/, "")
+                fs.writeFileSync(path1, img1, { encoding: 'base64' })
+            }
+
+            if(req.body.image2.length!=0){
+                console.log('enter edit image 2');
+                let image2 = req.body.image2
+                let path2 = './public/productimage/image1/' + id + '_2.jpg'
+                let img2 = image2.replace(/^data:([A-Za-z+/]+);base64,/, "")
+                fs.writeFileSync(path2, img2, { encoding: 'base64' })
+            }
+
+            if(req.body.image3.length!=0){
+                console.log('enter edit image 1');
+                let image3 = req.body.image3
+                let path3 = './public/productimage/image1/' + id + '_3.jpg'
+                let img3 = image3.replace(/^data:([A-Za-z+/]+);base64,/, "")
+                fs.writeFileSync(path3, img3, { encoding: 'base64' })
+            }
+        
             res.redirect('/admin/product')
+      
         }catch(err){
-            console.log(err);
+            console.log('enter catch');
             res.redirect('/admin/product')
         }
         })
@@ -132,7 +173,7 @@ router.get('/productdelete/',verifyLogin,async(req,res)=>{
 // user managemt show users in admin side
 router.get('/customers',verifyLogin,async(req,res)=>{
  await userHelpers.getAllusers().then((users)=>{
-     res.render('admin/customers',{admin:1,users})
+     res.render('admin/usersList',{admin:1,users})
  })
 })
 
@@ -166,8 +207,13 @@ router.post('/unblockuser',async(req,res)=>{
 router.get('/orders',verifyLogin,async(req,res)=>{
    await orderHelpers.getAllOrders().then((allOrders)=>{
        console.log(allOrders);
-        res.render('admin/orders',{admin:1,allOrders})
+        res.render('admin/OrderList',{admin:1,allOrders})
     })
+})
+
+// get all orders In Data Tabe
+router.get('/sampleOrders',(req,res)=>{
+    res.render('admin/OrderList',{admin:9})
 })
 
 // edit order status in admin side

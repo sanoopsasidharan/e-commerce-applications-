@@ -28,7 +28,7 @@ module.exports = {
     },
     getAllProducts: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection('product').find().toArray()
+            let products = await db.get().collection('product').find().sort({_id:-1}).toArray()
             if (products) {
                 resolve(products)
             } else {
