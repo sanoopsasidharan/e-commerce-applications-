@@ -286,12 +286,16 @@ aria-hidden="true">
                                                         <label class="control-label"><%= product.subcategory %></label>
         
                                                         <select class="select2 form-control select2-multiple" name="subcategory" id="chage-subcategory">
+                                                            <% if(response.subcategory){ %>
                                                             <% for(var i=0; i< response.length; i++) {%>
                                                                 <option value="<%= response[i].subcategory[i] %>">
                                                                     <%= response[i].subcategory[i] %>
                                                                 </option>
                                                                 <% } %>
-                                                            
+                                                                <% } else{ %>  
+                                                                 
+                                                                    <% } %>
+
                                                             
                                                         </select>
         

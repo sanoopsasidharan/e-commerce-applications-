@@ -15,7 +15,11 @@ module.exports = {
             price: parseInt(data.price),
             category: data.category,
             subcategory: data.subcategory,
-            productdiscription: data.productdiscription
+            productdiscription: data.productdiscription,
+            cateOfferPercentage:0,
+            proOfferPercentage:0,
+            proOffer:false,
+            cateOffer:false
         }
 
         console.log(data);

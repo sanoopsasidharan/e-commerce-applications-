@@ -6,5 +6,8 @@ module.exports={
     productCollection:'product',
     orderCollection:'order',
     addressCollection:'address',
-    wishlistCollection:'wishlist'
+    wishlistCollection:'wishlist',
+    categoryOfferCollecion:'categoryOffer',
+    productOfferCollection:'productOffer'
+
 }

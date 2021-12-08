@@ -287,6 +287,7 @@
                                                     <select onchange="getsubcat()" id="categoryid" name='category'
                                                         class="form-control select2">
                                                         <!-- <option  >Select</option> -->
+                                                        
                                                         <% for(var i=0; i< response.length; i++) {%>
                                                             <option value="<%= response[i].category %>">
                                                                 <%= response[i].category %>
@@ -303,11 +304,16 @@
                                                     <select class="select2 form-control select2-multiple"
                                                         name="subcategory" id="chage-subcategory"
                                                         data-placeholder="Choose ...">
-                                                        <% for(var i=0; i< response.length; i++) {%>
-                                                            <option value="<%= response[i].subcategory[i] %>">
-                                                                <%= response[i].subcategory[i] %>
-                                                            </option>
-                                                            <% } %>
+                                                        <% if(response.subcategory){ %>
+                                                            <% for(var i=0; i< response.length; i++) {%>
+                                                                <option value="<%= response[i].subcategory[i] %>">
+                                                                    <%= response[i].subcategory[i] %>
+                                                                </option>
+                                                                <% } %>
+                                                          <% } else{ %>  
+                                                         
+                                                         <% } %>
+                                                        
                                                     </select>
 
                                                 </div>

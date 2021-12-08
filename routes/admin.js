@@ -8,6 +8,7 @@ const userHelpers = require('../helpers/user-helpers')
 const cartHelpers = require('../helpers/cart-helpers')
 const orderHelpers = require('../helpers/order-helper');
 const salesHelpers = require('../helpers/sales-helpers');
+const offerAndCouponHelpers = require('../helpers/offer-and-coupone-helper');
 const { response } = require('express');
 let fs = require ('fs')
 var addProductPopup = false;
@@ -52,8 +53,10 @@ router.get('/home',verifyLogin,(req,res)=>{
 
 // show all product of admin side
 router.get('/product',verifyLogin,async(req,res)=>{
+    let AllProductOffers = await offerAndCouponHelpers.getAllProductOffers()
+    console.log(AllProductOffers);
    await productHelpers.getAllProducts().then((products)=>{
-    res.render('admin/product',{admin:1,products,addProductPopup})
+    res.render('admin/product',{admin:1,products,AllProductOffers})
   
     })
 })
@@ -227,14 +230,16 @@ router.post('/changeStatus',async(req,res)=>{
 
 // category management 
 router.get('/categorylist',verifyLogin,async(req,res)=>{
+   let allOffers = await offerAndCouponHelpers.showAllCategoryOffer()
    await categoryHelpers.showAllCategory().then((category)=>{
-        res.render('admin/categorylist',{admin:1,category})
+        res.render('admin/categorylist',{admin:1,category,allOffers})
     })
 })
 
 // add category in admin side with ajax
 router.post('/addcategory',async(req,res)=>{
-   await categoryHelpers.addCategory(req.body.category).then((response)=>{
+    req.body.cateOffer=false
+   await categoryHelpers.addCategory(req.body.category,req.body.cateOffer).then((response)=>{
     res.json(response)
     })
 })
@@ -323,6 +328,78 @@ router.post('/getGraphResponse',async(req,res)=>{
     })
 })
 
+// offer page 
+router.get('/categoryOffer',verifyLogin,async(req,res)=>{
+    var allCates =await offerAndCouponHelpers.showAllNoCategoryOffers()
+    await offerAndCouponHelpers.showAllCategoryOffer().then((allOffers)=>{
+        res.render('admin/categoryOffer',{admin:1,allOffers,allCates})
+    })
+})
+
+// add new Offer
+router.post('/addNewcategoryOffer',(req,res)=>{
+    console.log(req.body.category);
+    offerAndCouponHelpers.addCategoryOffer(req.body.category,req.body).then((response)=>{
+        console.log(response);
+        res.json(response)
+    }).catch((err)=>{
+        console.log(err);
+        res.json(err)
+    })
+})
+
+// delete category offer 
+router.post('/deleteCategoryOffer',(req,res)=>{
+    console.log(req.body.offerId);
+    offerAndCouponHelpers.deleteCategoryOffer(req.body.offerId).then((response)=>{
+        console.log(response);
+        res.json(response)
+    }).catch((err)=>{
+        console.log(err);
+        res.json(err)
+    })
+})
+
+// add category offer in category
+// router.post('/categoryAddCategoryOffer',(req,res)=>{
+//     console.log();
+//     console.log(req.body.CateOffer);
+//     offerAndCouponHelpers.addOfferInCategory(req.body.category,req.body.CateOffer).then((response)=>{
+//         console.log(response);
+//     })
+// })
+
+// add offer in product in admin side
+router.post('/product-add-product-offer',(req,res)=>{
+    offerAndCouponHelpers.addProductOffer(req.body).then((response)=>{
+        res.json(response)
+    })
+})
+
+// show product offer in admin side 
+router.get('/showAllProductOffers',verifyLogin,(req,res)=>{
+
+    offerAndCouponHelpers.showAllProductOffers().then((allOffers)=>{
+        console.log(allOffers);
+        res.render('admin/productOffer',{admin:1,allOffers})
+    })
+})
+
+// add new product offer 
+router.post('/addNewProductOffer',(req,res)=>{
+    console.log(req.body);
+    offerAndCouponHelpers.addproductOffer(req.body).then((response)=>{
+        res.send(response)
+    })
+})
+
+// delete product offer 
+router.post('/deleteOfferProduct',(req,res)=>{
+    console.log(req.body.ProductOfferId);
+    offerAndCouponHelpers.deleteProductOffer(req.body.ProductOfferId).then((response)=>{
+        res.json(response)
+    })
+})
 router.post('/salesStatus',(req,res)=>{
 
 })

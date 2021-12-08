@@ -496,7 +496,8 @@ router.get('/cartmanagement',verifyLogin,async(req,res)=>{
    let products=await cartHelpers.showCart(req.session.user._id)
    let cartCount=await cartHelpers.getCartCount(req.session.user._id)
    let total=await cartHelpers.getTotalAmount(req.session.user._id)
-   console.log(products);
+
+   console.log(total);
  
    res.render('user/cart',{admin:0,user,result,products,cartCount,total})
 })

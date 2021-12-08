@@ -2,8 +2,31 @@
 <html lang="en">
 
     
-<!-- Mirrored from themesbrand.com/dason/layouts/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 10:55:42 GMT -->
+<!-- Mirrored from themesbrand.com/dason/layouts/default/extended-sweet-alert.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 10:59:46 GMT -->
+<head>
+        
+        <meta charset="utf-8" />
+        <title>SweetAlert 2 | Dason - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
 
+        <!-- Sweet Alert-->
+        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- preloader css -->
+        <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
 
     <body data-topbar="dark">
 
@@ -23,7 +46,7 @@
                                     <img src="assets/images/logo-sm.svg" alt="" height="30">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">EKKA</span>
+                                    <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Dason</span>
                                 </span>
                             </a>
 
@@ -32,7 +55,7 @@
                                     <img src="assets/images/logo-sm.svg" alt="" height="30">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">EKKA</span>
+                                    <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Dason</span>
                                 </span>
                             </a>
                         </div>
@@ -195,7 +218,7 @@
                                                     <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours ago</span></p>
                                                 </div>
                                             </div>
-                                        </div>nam
+                                        </div>
                                     </a>
                                     <a href="#!" class="text-reset notification-item">
                                         <div class="d-flex">
@@ -272,7 +295,7 @@
                                 <a class="dropdown-item" href="apps-contacts-profile.html"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
                                 <a class="dropdown-item" href="auth-lock-screen.html"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/admin/logout"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                                <a class="dropdown-item" href="auth-logout.html"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
                             </div>
                         </div>
 
@@ -292,109 +315,58 @@
                             <li class="menu-title" data-key="t-menu">Menu</li>
 
                             <li>
-                                <a href="/admin/home">
+                                <a href="index.html">
                                     <i data-feather="home"></i>
-                                    <!-- <span class="badge rounded-pill bg-soft-success text-success float-end">9+</span> -->
+                                    <span class="badge rounded-pill bg-soft-success text-success float-end">9+</span>
                                     <span data-key="t-dashboard">Dashboard</span>
                                 </a>
                             </li>
 
-                            <!-- <li class="menu-title" data-key="t-apps">Menu</li> -->
+                            <li class="menu-title" data-key="t-apps">Apps</li>
 
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="shopping-cart"></i>
-                                    <span data-key="t-ecommerce">Products</span>
+                                    <span data-key="t-ecommerce">Ecommerce</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/admin/product" key="t-products">Product List</a></li>
-                                    <li><a href="/admin/add_product" data-key="t-add-product">Add Product</a></li>
-                                    <!-- <li><a href="/admin/customers" data-key="t-customers">Customers</a></li>
-                                    <li><a href="/admin/product_details" data-key="t-product-detail">Product Detail</a></li>
-                                    <li><a href="/admin/orders" data-key="t-orders">Orders</a></li>
-                                    <li><a href="/admin/cart" data-key="t-cart">Cart</a></li>
-                                    <li><a href="/admin/checkout" data-key="t-checkout">Checkout</a></li>
-                                    <li><a href="/admin/categorylist" data-key="t-add-product">Category </a></li> -->
+                                    <li><a href="ecommerce-products.html" key="t-products">Products</a></li>
+                                    <li><a href="ecommerce-product-detail.html" data-key="t-product-detail">Product Detail</a></li>
+                                    <li><a href="ecommerce-orders.html" data-key="t-orders">Orders</a></li>
+                                    <li><a href="ecommerce-customers.html" data-key="t-customers">Customers</a></li>
+                                    <li><a href="ecommerce-cart.html" data-key="t-cart">Cart</a></li>
+                                    <li><a href="ecommerce-checkout.html" data-key="t-checkout">Checkout</a></li>
+                                    <li><a href="ecommerce-shops.html" data-key="t-shops">Shops</a></li>
+                                    <li><a href="ecommerce-add-product.html" data-key="t-add-product">Add Product</a></li>
                                 </ul>
                             </li>
 
-                            <!-- <li>
-                                <a href="/admin/product">
+                            <li>
+                                <a href="apps-chat.html">
                                     <i data-feather="message-square"></i>
-                                    <span data-key="t-chat">Products</span>
+                                    <span data-key="t-chat">Chat</span>
                                 </a>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
-                                <a href="/admin/add_product" class="has-arrow">
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="mail"></i>
-                                    <span data-key="t-email">Add Product</span>
+                                    <span data-key="t-email">Email</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="apps-email-inbox.html" data-key="t-inbox">Inbox</a></li>
                                     <li><a href="apps-email-read.html" data-key="t-read-email">Read Email</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
                             <li>
-                                <a href="/admin/customers">
+                                <a href="apps-calendar.html">
                                     <i data-feather="calendar"></i>
-                                    <span data-key="t-calendar">Customers</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow">
-                                    <i data-feather="shopping-cart"></i>
-                                    <span data-key="t-ecommerce">Offers</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/admin/categoryOffer" key="t-products">CategoryOffer</a></li>
-                                    <li><a href="/admin/showAllProductOffers" data-key="t-add-product">Product Offer</a></li>
-                                    <!-- <li><a href="/admin/customers" data-key="t-customers">Customers</a></li>
-                                    <li><a href="/admin/product_details" data-key="t-product-detail">Product Detail</a></li>
-                                    <li><a href="/admin/orders" data-key="t-orders">Orders</a></li>
-                                    <li><a href="/admin/cart" data-key="t-cart">Cart</a></li>
-                                    <li><a href="/admin/checkout" data-key="t-checkout">Checkout</a></li>
-                                    <li><a href="/admin/categorylist" data-key="t-add-product">Category </a></li> -->
-                                </ul>
-                            </li>
-                            <!-- <li>
-                                <a href="/admin/categoryOffer">
-                                    <i data-feather="calendar"></i>
-                                    <span data-key="t-calendar">Offers</span>
-                                </a>
-                            </li> -->
-                            <li>
-                                <a href="/admin/orders">
-                                    <i data-feather="calendar"></i>
-                                    <span data-key="t-calendar">Orders</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow">
-                                    <!-- <i data-feather="fas fa-allergies"></i> -->
-                                    <i class="fas fa-ad"></i>
-                                    <span data-key="t-ecommerce">Sales Report</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/admin/salesReport" key="t-products">Order List</a></li>
-                                    <!-- <li><a href="/admin/add_product" data-key="t-add-product">Add Product</a></li> -->
-                                    <!-- <li><a href="/admin/customers" data-key="t-customers">Customers</a></li>
-                                    <li><a href="/admin/product_details" data-key="t-product-detail">Product Detail</a></li>
-                                    <li><a href="/admin/orders" data-key="t-orders">Orders</a></li>
-                                    <li><a href="/admin/cart" data-key="t-cart">Cart</a></li>
-                                    <li><a href="/admin/checkout" data-key="t-checkout">Checkout</a></li>
-                                    <li><a href="/admin/categorylist" data-key="t-add-product">Category </a></li> -->
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/admin/categorylist">
-                                    <i data-feather="calendar"></i>
-                                    <span data-key="t-calendar">Category</span>
+                                    <span data-key="t-calendar">Calendar</span>
                                 </a>
                             </li>
                 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="users"></i>
                                     <span data-key="t-contacts">Contacts</span>
@@ -404,9 +376,9 @@
                                     <li><a href="apps-contacts-list.html" data-key="t-user-list">User List</a></li>
                                     <li><a href="apps-contacts-profile.html" data-key="t-profile">Profile</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="trello"></i>
                                     <span data-key="t-tasks">Tasks</span>
@@ -416,11 +388,11 @@
                                     <li><a href="tasks-kanban.html" key="t-kanban-board">Kanban Board</a></li>
                                     <li><a href="tasks-create.html" key="t-create-task">Create Task</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li class="menu-title" data-key="t-pages">Pages</li> -->
+                            <li class="menu-title" data-key="t-pages">Pages</li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="layers"></i>
                                     <span data-key="t-authentication">Authentication</span>
@@ -435,9 +407,9 @@
                                     <li><a href="auth-email-verification.html" data-key="t-email-verification">Email Verification</a></li>
                                     <li><a href="auth-two-step-verification.html" data-key="t-two-step-verification">Two Step Verification</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="file-text"></i>
                                     <span data-key="t-pages">Pages</span>
@@ -452,18 +424,18 @@
                                     <li><a href="pages-404.html" data-key="t-error-404">Error 404</a></li>
                                     <li><a href="pages-500.html" data-key="t-error-500">Error 500</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="layouts-horizontal.html">
                                     <i data-feather="layout"></i>
                                     <span data-key="t-horizontal">Horizontal</span>
                                 </a>
-                            </li> -->
+                            </li>
 
-                            <!-- <li class="menu-title mt-2" data-key="t-components">Components</li> -->
+                            <li class="menu-title mt-2" data-key="t-components">Components</li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="briefcase"></i>
                                     <span data-key="t-components">Bootstrap</span>
@@ -486,9 +458,9 @@
                                     <li><a href="ui-general.html" data-key="t-general">General</a></li>
                                     <li><a href="ui-colors.html" data-key="t-colors">Colors</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="gift"></i>
                                     <span data-key="t-ui-elements">Extended</span>
@@ -501,9 +473,9 @@
                                     <li><a href="extended-rating.html" data-key="t-rating">Rating</a></li>
                                     <li><a href="extended-notifications.html" data-key="t-notifications">Notifications</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);">
                                     <i data-feather="box"></i>
                                     <span class="badge rounded-pill bg-soft-danger text-danger float-end">7</span>
@@ -518,9 +490,9 @@
                                     <li><a href="form-wizard.html" data-key="t-form-wizard">Wizard</a></li>
                                     <li><a href="form-mask.html" data-key="t-form-mask">Mask</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="sliders"></i>
                                     <span data-key="t-tables">Tables</span>
@@ -531,9 +503,9 @@
                                     <li><a href="tables-responsive.html" data-key="t-responsive-table">Responsive</a></li>
                                     <li><a href="tables-editable.html" data-key="t-editable-table">Editable</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="pie-chart"></i>
                                     <span data-key="t-charts">Charts</span>
@@ -545,9 +517,9 @@
                                     <li><a href="charts-knob.html" data-key="t-knob-charts">Jquery Knob</a></li>
                                     <li><a href="charts-sparkline.html" data-key="t-sparkline-charts">Sparkline</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="cpu"></i>
                                     <span data-key="t-icons">Icons</span>
@@ -559,9 +531,9 @@
                                     <li><a href="icons-dripicons.html" data-key="t-dripicons">Dripicons</a></li>
                                     <li><a href="icons-fontawesome.html" data-key="t-font-awesome">Font Awesome 5</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="map"></i>
                                     <span data-key="t-maps">Maps</span>
@@ -571,9 +543,9 @@
                                     <li><a href="maps-vector.html" data-key="t-v-maps">Vector</a></li>
                                     <li><a href="maps-leaflet.html" data-key="t-l-maps">Leaflet</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="share-2"></i>
                                     <span data-key="t-multi-level">Multi Level</span>
@@ -588,7 +560,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li> -->
+                            </li>
 
                         </ul>
 
@@ -610,24 +582,347 @@
 
             
 
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">SweetAlert 2</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Extended</a></li>
+                                            <li class="breadcrumb-item active">SweetAlert 2</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Examples</h4>
+                                        <p class="card-title-desc">A beautiful, responsive, customizable
+                                            and accessible (WAI-ARIA) replacement for JavaScript's popup boxes. Zero
+                                            dependencies.</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-nowrap align-middle justify-content-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" style="width: 50%;">
+                                                            Sweet Alert Type
+                                                        </th>
+                                                        <th scope="col" class="text-center">
+                                                            Sweet Alert Examples
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                    <tr>
+                                                        <th scope="row">
+                                                            A Basic Message
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-basic">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            A Title with a Text Under
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-title">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            A success message!
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-success">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            A warning message, with a function attached to the "Confirm"-button...
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-warning">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            By passing a parameter, you can execute something else for "Cancel".
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-params">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            A message with custom Image Header
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-image">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            A message with auto close timer
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-close">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Custom HTML description and buttons
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="custom-html-alert">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            A custom positioned dialog
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-position">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            A message with custom width, padding and background
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="custom-padding-width-alert">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Ajax request example
+                                                        </th>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="ajax-alert">Click me</button>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <!-- end table -->
+                                        </div>
+                                        <!-- end table responsive -->
+                                        
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © Dason.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Design & Develop by <a href="#!" class="text-decoration-underline">Themesbrand</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
 
         </div>
         <!-- END layout-wrapper -->
 
         
         <!-- Right Sidebar -->
-        
+        <div class="right-bar">
+            <div data-simplebar class="h-100">
+                <div class="rightbar-title d-flex align-items-center bg-dark p-3">
+
+                    <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
+
+                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                        <i class="mdi mdi-close noti-icon"></i>
+                    </a>
+                </div>
+
+                <!-- Settings -->
+                <hr class="m-0" />
+
+                <div class="p-4">
+                    <h6 class="mb-3">Layout</h6>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout"
+                            id="layout-vertical" value="vertical">
+                        <label class="form-check-label" for="layout-vertical">Vertical</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout"
+                            id="layout-horizontal" value="horizontal">
+                        <label class="form-check-label" for="layout-horizontal">Horizontal</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-mode"
+                            id="layout-mode-light" value="light">
+                        <label class="form-check-label" for="layout-mode-light">Light</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-mode"
+                            id="layout-mode-dark" value="dark">
+                        <label class="form-check-label" for="layout-mode-dark">Dark</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-width"
+                            id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                        <label class="form-check-label" for="layout-width-fuild">Fluid</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-width"
+                            id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed'),document.body.setAttribute('data-sidebar-size', 'sm')">
+                        <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-position"
+                            id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                        <label class="form-check-label" for="layout-position-fixed">Fixed</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-position"
+                            id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                        <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="topbar-color"
+                            id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                        <label class="form-check-label" for="topbar-color-light">Light</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="topbar-color"
+                            id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
+                        <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
+
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                        <label class="form-check-label" for="sidebar-size-default">Default</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                        <label class="form-check-label" for="sidebar-size-compact">Compact</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                        <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
+
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                        <label class="form-check-label" for="sidebar-color-light">Light</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                        <label class="form-check-label" for="sidebar-color-dark">Dark</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                        <label class="form-check-label" for="sidebar-color-brand">Brand</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Direction</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-direction"
+                            id="layout-direction-ltr" value="ltr">
+                        <label class="form-check-label" for="layout-direction-ltr">LTR</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-direction"
+                            id="layout-direction-rtl" value="rtl">
+                        <label class="form-check-label" for="layout-direction-rtl">RTL</label>
+                    </div>
+
+                </div>
+
+            </div> <!-- end slimscroll-menu-->
+        </div>
         <!-- /Right-bar -->
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
-        
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script>
+        <!-- pace js -->
+        <script src="assets/libs/pace-js/pace.min.js"></script>
 
+        <!-- Sweet Alerts js -->
+        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+        <!-- Sweet alert init js-->
+        <script src="assets/js/pages/sweetalert.init.js"></script>
+
+        <script src="assets/js/app.js"></script>
 
     </body>
 
-
-<!-- Mirrored from themesbrand.com/dason/layouts/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 10:57:50 GMT -->
+<!-- Mirrored from themesbrand.com/dason/layouts/default/extended-sweet-alert.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 10:59:49 GMT -->
 </html>

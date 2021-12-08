@@ -46,6 +46,63 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
+
+            <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Available Category Offer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div id="tableId" class="table-responsive">
+               <form id="addcateOffer" action="">
+                    <input type="text" name="category" value="" id="categoryname" hidden>
+                <table  class="table">   
+                    <tbody>
+                        
+                            <tr>
+                                <td>
+                                    
+                                    <input type="radio" value="" name="CateOffer" id=""checked>
+                                </td>
+                                <td>
+                                   
+                                    
+                                </td>
+                                <td>
+                                   
+                                   
+                                </td>
+                                <td>
+                                  
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                    </tbody>
+                 
+               
+            </table>
+            <div style="display: flex;justify-content: right;">
+                <button class="btn btn-primary waves-effect waves-light " type="submit">submit</button>
+            </div>
+            
+               </form>
+            </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
             <!-- Button trigger modal -->
             <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
@@ -64,7 +121,7 @@
                             <form action="/admin/editcategory" method="post" style="width: 100%;">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Enter new Category name</label>
-                                    <input type="text" name="category" value="" id="test" hidden>
+                                    <!-- <input type="text" name="category" value="" id="test" hidden> -->
                                     <input type="text" name="newcategory" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp">
                                 </div>
@@ -107,6 +164,7 @@
                                                     <th>category</th>
                                                     <th>subcategory</th>
                                                     <th>edit</th>
+                                                    <th>Add offer</th>
                                                     <th>delete</th>
                                                 </tr>
                                             </thead>
@@ -129,6 +187,12 @@
                                                                 data-bs-toggle="modal">edit</a>
                                                         </td>
 
+                                                        <td>
+                                                            <button data-val="<%= category[i].category %>" type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                                                            data-bs-target="#staticBackdrop">add Offer</button>
+                                                        
+                                                            
+                                                        </td>
 
                                                         <td>
                                                             <a
@@ -469,6 +533,26 @@
             console.log(myVal)
             $(this).find("#test").val(myVal);
         });
+
+        // $('#staticBackdrop').on('show.bs.modal', function (event) {
+        //     var myVal = $(event.relatedTarget).attr('data-val');
+        //     console.log(myVal)
+        //     $(this).find("#categoryname").val(myVal);
+        // });
+
+
+        $('#addcateOffer').submit((num)=>{
+            num.preventDefault()
+            $.ajax({
+                url:'/admin/categoryAddCategoryOffer',
+                data:$('#addcateOffer').serialize(),
+                method:'post',
+                success:(response)=>{
+                    alert(response)
+                }
+                
+            })
+        })
     </script>
 
 </body>

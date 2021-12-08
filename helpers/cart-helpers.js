@@ -94,10 +94,23 @@ module.exports={
                 }
                 
             ]).toArray()
-            console.log('cartItems');
-            console.log(cartItems);
-            // console.log(cartItems[0].product);
-            // console.log(cartItems[0].product[0].productname);
+            for(let i = 0; i<cartItems.length;i++){
+                if(cartItems[i].product.proOfferPercentage > 0 || cartItems[i].product.cateOfferPercentage > 0){
+            
+                   if(cartItems[i].product.proOfferPercentage > cartItems[i].product.cateOfferPercentage){
+                   
+                    cartItems[i].subTotal = Math.round (cartItems[i].product.price * cartItems[i].quantity * 0.01 *(100 - cartItems[i].product.proOfferPercentage))
+                    cartItems[i].product.price =Math.round (cartItems[i].product.price * 0.01*(100-cartItems[i].product.proOfferPercentage))
+                    console.log('true');
+                   }else{
+                    
+                    cartItems[i].subTotal=Math.round (cartItems[i].product.price * cartItems[i].quantity * 0.01 * (100 - cartItems[i].product.cateOfferPercentage))
+                    cartItems[i].product.price =Math.round (cartItems[i].product.price * 0.01*(100-cartItems[i].product.cateOfferPercentage))
+                    console.log('fales');
+                   }
+               }
+            }
+
             resolve(cartItems)
             
         })
@@ -183,10 +196,72 @@ module.exports={
                 }
                 
             ]).toArray()
-            // console.log(total[0].total);
-            // console.log(cartItems[0].product);
-            // console.log(cartItems[0].product[0].productname);
-            resolve(total[0].total)
+
+
+            let cartItems = await db.get().collection(collection.cartCollection).aggregate([
+                {
+                    $match:{user:objectId(userId)}
+                },
+                {
+
+                    $unwind:'$products'
+                },
+                {
+                    $project:{
+                        item:'$products.item',
+                        quantity:'$products.quantity'
+                    }
+                },
+                {
+                    $lookup:{
+                        from:collection.productCollection,
+                        localField:'item',
+                        foreignField:'_id',
+                        as:'product'
+                    }
+                },
+                {
+                    $project:{
+                        item:1,quantity:1,product:{$arrayElemAt:['$product',0]}
+                    }
+                },
+                {
+                    $project:{
+                        item:1,quantity:1,product:1,subTotal:{$multiply:['$quantity','$product.price']}
+
+                    }
+                }
+                
+            ]).toArray()
+
+            let OfferTotal = 0 
+             
+            for( let s = 0; s < cartItems.length; s++){
+
+                if(cartItems[s].product.proOfferPercentage > 0 || cartItems[s].product.cateOfferPercentage > 0 ){
+                    if(cartItems[s].product.proOfferPercentage > cartItems[s].product.cateOfferPercentage){
+                        OfferTotal += Math.round (cartItems[s].product.price * cartItems[s].quantity * 0.01 *(100 - cartItems[s].product.proOfferPercentage))
+
+                    }else{
+                        OfferTotal += Math.round (cartItems[s].product.price * cartItems[s].quantity * 0.01 *(100 - cartItems[s].product.cateOfferPercentage))
+                    }
+                }else{
+
+                    OfferTotal += cartItems[s].subTotal
+                }
+            }
+            
+
+
+            // console.log(OfferTotal);
+            // console.log(cartItems);
+            // console.log(total);
+
+            // resolve(total[0].total,OfferTotal)
+            let OrginalPrice = total[0].total
+            resolve({OrginalPrice,OfferTotal})
+
+
             // error when cart is empty then didnt open cart 
         }else{
             resolve(0)
@@ -273,11 +348,25 @@ module.exports={
                         $project:{_id:0, quantity:1,product:{$arrayElemAt:['$product',0]}}
                     },
                     {
-                        $project:{subTotal:{$multiply:['$quantity','$product.price']}}
+                        $project:{product:1,quantity:1,subTotal:{$multiply:['$quantity','$product.price']}}
 
                     }
 
                 ]).toArray()
+
+                for(let j = 0; j < subtotal.length; j++ ){
+                    if(subtotal[j].product.proOfferPercentage > 0 || subtotal[j].product.cateOfferPercentage > 0){
+                        if(subtotal[j].product.proOfferPercentage > subtotal[j].product.cateOfferPercentage){
+                        
+                            subtotal[j].subTotal = Math.round ( subtotal[j].product.price *  subtotal[j].quantity * 0.01 *(100 - subtotal[j].product.proOfferPercentage))
+
+                        }else{
+                            
+                            subtotal[j].subTotal = Math.round ( subtotal[j].product.price *  subtotal[j].quantity * 0.01 *(100 - subtotal[j].product.cateOfferPercentage))
+                        }
+                    }
+                }
+
                 console.log(subtotal[0].subTotal);
                 resolve(subtotal[0].subTotal)
 

@@ -6,13 +6,13 @@ const { response } = require('express');
 
 module.exports = {
 
-    addCategory: (categoryName) => {
+    addCategory: (categoryName,cateOffer) => {
         return new Promise(async (resolve, reject) => {
             var findcategory = await db.get().collection(collection.categoryCollection).findOne({ category: categoryName })
             if (findcategory) {
                 resolve({ status: false })
             } else {
-                db.get().collection(collection.categoryCollection).insertOne({ category: categoryName }).then((result) => {
+                db.get().collection(collection.categoryCollection).insertOne({ category: categoryName,cateOffer:cateOffer}).then((result) => {
                     resolve({ status: true })
                 })
             }
